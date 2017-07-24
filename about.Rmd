@@ -2,4 +2,4 @@
 title: "About Me"
 ---
 
-I usually blog on (statsbylopez)[statsbylopez.com], but Wordpress is getting on my nerves. Future slides (and possibly more) posted here.
+I usually blog on [statsbylopez](statsbylopez.com), but Wordpress is getting on my nerves. Future slides (and possibly more) posted here.

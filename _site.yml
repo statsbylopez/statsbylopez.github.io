@@ -9,3 +9,7 @@ navbar:
       href: about.html
     - text: "JSM 2017"
       href: jsm17.html
+output:
+  html_document:
+    theme: flatly
+    css: style.css

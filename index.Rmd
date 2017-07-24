@@ -2,4 +2,4 @@
 title: "Mike's website"
 ---
 
-Hello, World!  Posting JSM slides for now
+Hello, World! Just getting started with a Github website build. 

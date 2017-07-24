@@ -5,10 +5,10 @@ navbar:
   left:
     - text: "Home"
       href: index.html
+    - text: "Slides"
+      href: slides.html
     - text: "About Me"
       href: about.html
-    - text: "JSM 2017"
-      href: jsm17.html
 output:
   html_document:
     theme: flatly

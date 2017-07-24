@@ -2,6 +2,10 @@
 title: "Slides"
 ---
 
-## JSM 2017
+## Statistics in Sports
 
-[link](link here) Slides for the 2017 Joint Statistical Meetings on parity in professional sports, particularly in respect to the National Football League
+[August 2017](link here) Slides for the 2017 Joint Statistical Meetings on parity in professional sports, particularly in respect to the National Football League
+
+
+## Statistics in public health
+

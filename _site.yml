@@ -1,7 +1,7 @@
 name: "Statsbylopez"
 output_dir: "."
 navbar:
-  title: "Mike Lopez's R Markdown site"
+  title: "Statsbylopez"
   left:
     - text: "Home"
       href: index.html

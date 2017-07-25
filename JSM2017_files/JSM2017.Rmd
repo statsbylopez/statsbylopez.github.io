@@ -39,7 +39,7 @@ https://github.com/bigfour/competitiveness.
 3. How do NFL *systems* impact league outcomes? 
 
 
-## 1. Assess parity in professional sports
+## Assess parity in professional sports
 
 How to define parity
 
@@ -48,7 +48,7 @@ How to define parity
 **Google**
 
 
-## 1. Assess parity in professional sports
+## Assess parity in professional sports
 
 What parity looks like:
 
@@ -56,22 +56,16 @@ What parity looks like:
 
 
 
-## 1. Assess parity in professional sports
+## Assess parity in professional sports
 
 What parity does not look like: 
 
 <img src="kp.gif" style="width:400px; height=200px">
 
 
-## 1. Assess parity in professional sports
 
-Parity checklist
 
-1. Equality at a fixed time 
-2. Within season equality 
-3. Between season equality
-
-## Building a cross-sport model 
+## A cross-sport model to assess parity
 
 
 Motivation: Extend [Glickman and Stern, 1998](http://www.tandfonline.com/doi/abs/10.1080/01621459.1998.10474084)
@@ -80,7 +74,7 @@ Motivation: Extend [Glickman and Stern, 1998](http://www.tandfonline.com/doi/abs
 <img src="Glickman.png" style="width:800px; height=670px">
 
 
-## Building a cross-sport model
+## A cross-sport model to assess parity
 
 * $p_{(q,s,k)ij}$ is probability that team $i$ will beat team $j$ in season $s$ during week $k$ of sports league $q$, for $q \in \{MLB, NBA, NFL, NHL\}$.
 * $\alpha_{q_{0}}$ be the league-wide home advantage (HA) in $q$
@@ -88,7 +82,7 @@ Motivation: Extend [Glickman and Stern, 1998](http://www.tandfonline.com/doi/abs
 * $\theta_{(q,s,k) i}$ and $\theta_{(q, s, k) j}$ be season-week team strength parameters 
 
 
-## Building a cross-sport model
+## A cross-sport model to assess parity
 
 \[ E[\text{logit}(p_{(q,s,k) ij})] = \theta_{(q,s,k) i} - \theta_{(q, s, k) j} + \alpha_{q_0} + \alpha_{(q) i^{\star}} \] 
 
@@ -100,7 +94,16 @@ Assumptions:
 1. $\gamma_{q,week}$ and $\gamma_{q,season}$ week/season level autogressive parameters
 
 
-## Fitting a cross-sport model
+## A cross-sport model to assess parity
+
+What can our model tell us? A parity checklist
+
+1. Equality at a fixed time (variability of $\theta_{(q,s,k) i}$'s)
+2. Within season equality ($\gamma_{q, week}$)
+3. Between season equality ($\gamma_{q, season}$)
+
+
+## A cross-sport model to assess parity
 
 *Data*:  2006-2016 regular season games in MLB, NBA, NFL, NHL via Sports Insights
 
@@ -110,7 +113,7 @@ Assumptions:
 
 *Draws*: 20k iterations, 2k burn in, thin of 5
 
-## Team strength results
+## Model estimates
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, fig.width= 6, fig.height = 3.5}
 source("https://raw.githubusercontent.com/bigfour/competitiveness/master/config.R")
@@ -175,7 +178,7 @@ ggplot(data = filter(tidy_thetas_division, division == "AFC North", season == 9)
 
 
 
-## Team strength results
+## Model estimates
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, fig.width= 6, fig.height = 3.5}
 ravens.time <- tidy_thetas_division %>% filter(sport == "NFL") %>% mutate(ravens = name == "Baltimore Ravens")
@@ -215,14 +218,14 @@ spag + facet_wrap(~sport, ncol = 1)
 ```
 </div>
 
-## 2. NFL's parity: equivalence of teams at fixed point in time
+## NFL's parity: equivalence of teams at fixed point in time
 
 
 How often does the best team win?
 
 <img src="parity.png" style="width:800px; height=300px">
 
-## 2. NFL's parity: evolution of strength over time
+## NFL's parity: evolution of strength over time
 
 ```{r, echo = FALSE, fig.width = 5.8, fig.height = 4.4}
 load(file.path(root, "data", "params.R1.rda"))
@@ -239,7 +242,7 @@ p.gamma
 ```
 
 
-## 2. NFL's parity: evolution of strength over time
+## NFL's parity: evolution of strength over time
 
 <div class="double">
 <p class="double-flow">
@@ -259,35 +262,23 @@ p.gamma
 </p>
 </div>
 
-## 2. NFL's parity 
 
-Parity checklist
-
-> 1. Equality at a fixed time `r emo::ji("x")`
-> 2. Within season equality `r emo::ji("heavy_check_mark")`
-> 3. Between season equality `r emo::ji("x")`
+## NFL systems that impact perceived parity
 
 
+> * Small number of games 
+> * Single elimination tournament 
+> * Unbalanced schedule (focus of today)
 
-## 3. NFL league characteristics that impact perceived parity
+## Effect of NFLs unbalanced schedule
 
+2 games per year against like-placed teams from prior year (I'll call them "crossover" games).
 
-> * Small number of games in a season (for a different day)
-> * Single elimination tournament (for a different day)
-> * Unbalanced schedule 
+$Hypothetical$: What if league-average teams were played instead?
 
-## 3. NFLs unbalanced schedule
+$Approach$: Use team strength estimates to approximate change in expected wins
 
-Games fixed well in advance
-
-* Intra division (6)
-* Fixed division vs. division (8)
-
-Games determined based on prior season results
-
-* Intra-conference vs like-placed teams (crossover games, 2)
-
-## 3. NFLs unbalanced schedule
+## Effect of NFLs unbalanced schedule
 
 ```{r, echo = FALSE, fig.width = 6.7, fig.height = 4.4}
 load(file.path(root, "data", "nflparity.rda"))
@@ -324,7 +315,7 @@ ggplot(filter(nfl.crossovers, team == "Indianapolis Colts"), aes(season, exp.win
 ```
 
 
-## 3. NFLs unbalanced schedule
+## Effect of NFLs unbalanced schedule
 
 ```{r, echo = FALSE, fig.width = 8.6, fig.height = 4.4}
 ggplot(filter(nfl.crossovers, team == "Indianapolis Colts"), aes(season, exp.wins, 
@@ -358,11 +349,10 @@ ggplot(nfl.crossovers, aes(season, exp.wins, fill = factor(lag.place.div))) + ge
 
 
 
-## 3. NFLs unbalanced schedule
+## Effect of NFLs unbalanced schedule
 
-Final thoughts
 
-> 1. Difference between first and last place appx one-third of a win a year
+> 1. Difference between last and first place in a division worth approximately one-third of a win in year following
 > 2. Practical significance given 16 game schedule
 > 3. Alternative effects: divisional games
 > 4. Future work: compare to other sports
@@ -384,17 +374,17 @@ Do NFL systems push records to 0.500? Sort of
 ## Acknowledgements: Greg and Ben
 
 <p class="double">
-<img src="greg.png" class="one-col-image" style="width:200px; height=200px">
-<img src="ben.jpg" class="one-col-image" style="width:200px; height=200px">
+<img src="greg.png" class="one-col-image" style="width:150px; height=150px">
+<img src="ben.jpg" class="one-col-image" style="width:150px; height=150px">
 </p>
 
 
 ## Summary: parity in the NFL
 
-1. Equality at a fixed time `r emo::ji("x")`
-2. Within season equality `r emo::ji("heavy_check_mark")`
-3. Between season equality `r emo::ji("x")`
-4. Crossover games drive records to 0.500 `r emo::ji("heavy_check_mark")`
+> 1. Equality at a fixed time `r emo::ji("x")`
+> 2. Within season equality `r emo::ji("heavy_check_mark")`
+> 3. Between season equality `r emo::ji("x")`
+> 4. Crossover games drive records to 0.500 `r emo::ji("heavy_check_mark")`
 
 More info: Paper ([link](arxiv.org/abs/1701.05976)) & Github ([link](https://github.com/bigfour/competitiveness))
 

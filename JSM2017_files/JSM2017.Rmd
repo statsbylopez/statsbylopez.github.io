@@ -98,9 +98,9 @@ Assumptions:
 
 What can our model tell us? A parity checklist
 
-1. Equality at a fixed time (variability of $\theta_{(q,s,k) i}$'s)
-2. Within season equality ($\gamma_{q, week}$)
-3. Between season equality ($\gamma_{q, season}$)
+1. Unpredictability at a fixed time (variability of $\theta_{(q,s,k) i}$'s)
+2. Within season unpredictability ($\gamma_{q, week}$)
+3. Between season unpredictability ($\gamma_{q, season}$)
 
 
 ## A cross-sport model to assess parity
@@ -218,14 +218,14 @@ spag + facet_wrap(~sport, ncol = 1)
 ```
 </div>
 
-## NFL's parity: equivalence of teams at fixed point in time
+## NFL's parity: unpredictability at a fixed point in time
 
 
 How often does the best team win?
 
 <img src="parity.png" style="width:800px; height=300px">
 
-## NFL's parity: evolution of strength over time
+## NFL's parity: unpredictability across time
 
 ```{r, echo = FALSE, fig.width = 5.8, fig.height = 4.4}
 load(file.path(root, "data", "params.R1.rda"))
@@ -241,8 +241,7 @@ p.gamma <- ggplot(params, aes(x = gamma_w, y = gamma_s, color = toupper(sport)))
 p.gamma
 ```
 
-
-## NFL's parity: evolution of strength over time
+## NFL's parity: unpredictability across time
 
 <div class="double">
 <p class="double-flow">
@@ -257,7 +256,7 @@ p.gamma <- ggplot(params, aes(x = gamma_w, y = gamma_s, color = toupper(sport)))
 p.gamma
 ```
 </p><p class="double-flow">
-* NFL matches NBA with low week-to-week consistency
+* NFL matches NBA with lowest week-to-week consistency
 * NFL with highest season-to-season consistency
 </p>
 </div>
@@ -381,9 +380,9 @@ Do NFL systems push records to 0.500? Sort of
 
 ## Summary: parity in the NFL
 
-> 1. Equality at a fixed time `r emo::ji("x")`
-> 2. Within season equality `r emo::ji("heavy_check_mark")`
-> 3. Between season equality `r emo::ji("x")`
+> 1. Unpredictability at a fixed time `r emo::ji("x")`
+> 2. Within season unpredictability `r emo::ji("heavy_check_mark")`
+> 3. Between season unpredictability `r emo::ji("x")`
 > 4. Crossover games drive records to 0.500 `r emo::ji("heavy_check_mark")`
 
 More info: Paper ([link](arxiv.org/abs/1701.05976)) & Github ([link](https://github.com/bigfour/competitiveness))

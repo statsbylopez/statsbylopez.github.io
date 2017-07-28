@@ -2,4 +2,6 @@
 title: "Statsbylopez"
 ---
 
-Welcome to the R Markdown website of Michael Lopez, Assistant Professor of Skidmore College. I'll be transitioning some material from my [blog](statsbylopez.com), and for now, will mostly be using this site to host conference slides and related material. 
+Welcome to the R Markdown website of Michael Lopez, Assistant Professor of Skidmore College. 
+
+I'll be transitioning some material from my [blog](https://statsbylopez.com/), and for now, will mostly be using this site to host conference slides and related material. 

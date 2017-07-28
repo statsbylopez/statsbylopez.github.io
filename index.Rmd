@@ -1,5 +1,5 @@
 ---
-title: "Mike's website"
+title: "Statsbylopez"
 ---
 
-Hello, World! Just getting started with a Github website build. 
+Welcome to the R Markdown website of Michael Lopez, Assistant Professor of Skidmore College. I'll be transitioning some material from my [blog](statsbylopez.com), and for now, will mostly be using this site to host conference slides and related material. 

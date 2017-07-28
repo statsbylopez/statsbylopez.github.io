@@ -385,7 +385,7 @@ Do NFL systems push records to 0.500? Sort of
 > 3. Between season unpredictability `r emo::ji("x")`
 > 4. Crossover games drive records to 0.500 `r emo::ji("heavy_check_mark")`
 
-More info: Paper ([link](arxiv.org/abs/1701.05976)) & Github ([link](https://github.com/bigfour/competitiveness))
+More info: Paper ([link](https://arxiv.org/abs/1701.05976)) & Github ([link](https://github.com/bigfour/competitiveness))
 
 
 

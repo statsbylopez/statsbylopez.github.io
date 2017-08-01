@@ -222,7 +222,7 @@ spag + facet_wrap(~sport, ncol = 1)
 
 
 How often does the best team win?
-
+ 
 <img src="parity.png" style="width:800px; height=300px">
 
 ## NFL's parity: unpredictability by season

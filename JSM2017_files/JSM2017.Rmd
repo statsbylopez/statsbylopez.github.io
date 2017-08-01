@@ -225,21 +225,54 @@ How often does the best team win?
 
 <img src="parity.png" style="width:800px; height=300px">
 
-## NFL's parity: unpredictability across time
+## NFL's parity: unpredictability by season
 
 ```{r, echo = FALSE, fig.width = 5.8, fig.height = 4.4}
 load(file.path(root, "data", "params.R1.rda"))
-p.gamma <- ggplot(params, aes(x = gamma_w, y = gamma_s, color = toupper(sport))) + 
-  geom_vline(xintercept = 1, color = "darkgray", linetype = 2) + 
-  annotate("text", x = 1.001, y = 0.85, 
-           label = "Random\nWalk", hjust = "left") + 
-  geom_density_2d() + geom_point(alpha = 0.1) + 
-  xlab(expression(paste("Week-to-week consistency (", gamma[week],")")))+ 
-  ylab(expression(paste("Season-to-season consistency (", gamma[season],")")))+ 
-  scale_colour_brewer(palette = "Dark2", "League") + 
-  theme_grey(base_size = 14) 
-p.gamma
+#p.gamma <- ggplot(params, aes(x = gamma_w, y = gamma_s, color = toupper(sport))) + 
+#  geom_vline(xintercept = 1, color = "darkgray", linetype = 2) + 
+#  annotate("text", x = 1.001, y = 0.85, 
+#           label = "Random\nWalk", hjust = "left") + 
+#  geom_density_2d() + geom_point(alpha = 0.1) + 
+#  xlab(expression(paste("Week-to-week consistency (", gamma[week],")")))+ 
+#  ylab(expression(paste("Season-to-season consistency (", gamma[season],")")))+ 
+#  scale_colour_brewer(palette = "Dark2", "League") + 
+#  theme_grey(base_size = 14) 
+#p.gamma
+
+params1 <- params %>% select(-sigma_g, -sigma_w, -sigma_s, -alpha) %>% gather("type", "gamma", gamma_w:gamma_s) 
+params1 <- filter(params1, type == "gamma_s" | gamma > 0.9)
+library(ggjoy)
+
+
+p1 <- ggplot(filter(params1, type == "gamma_s"), aes(x = gamma, y = toupper(sport), fill = sport == "nfl")) + 
+  geom_joy() +xlim(c(0.4, 0.8)) + xlab("Less predictable                       More predictable") + ylab("") + 
+  ggtitle(expression(paste("Season-to-season evolution of team strength (", gamma[season],")"))) + theme(plot.title = element_text(hjust = 0.5))+ 
+  theme_grey(base_size = 12) + scale_fill_manual(values = c("grey", "red"))  + theme(legend.position="none") 
+
+p2 <- ggplot(filter(params1, type == "gamma_w"), aes(x = gamma, y = toupper(sport), fill = sport == "nfl")) + 
+  geom_joy() +xlim(c(0.96, 1.01)) + xlab("Less predictable                       More predictable") + ylab("") + 
+  ggtitle(expression(paste("Season-to-season evolution of team strength (", gamma[week],")"))) + theme(plot.title = element_text(hjust = 0.5))+ 
+  theme_grey(base_size = 12) + scale_fill_manual(values = c("grey", "red"))  + theme(legend.position="none") 
+#library(gridExtra)
+#grid.arrange(p1, p2, nrow = 1)
+
+
+p1
+
 ```
+
+
+
+## NFL's parity: unpredictability by week
+
+
+```{r, echo = FALSE, fig.width = 5.8, fig.height = 4.4}
+p2
+```
+
+
+
 
 ## NFL's parity: unpredictability across time
 

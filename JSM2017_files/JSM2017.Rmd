@@ -218,14 +218,14 @@ spag + facet_wrap(~sport, ncol = 1)
 ```
 </div>
 
-## NFL's parity: predictability at a fixed point in time
+## NFL's parity: unpredictability at a fixed point in time
 
 
 How often does the best team win?
 
 <img src="parity.png" style="width:800px; height=300px">
 
-## NFL's parity: predictability by season
+## NFL's parity: unpredictability by season
 
 ```{r, echo = FALSE, fig.width = 5.8, fig.height = 4.4}
 load(file.path(root, "data", "params.R1.rda"))

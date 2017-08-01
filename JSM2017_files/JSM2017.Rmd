@@ -252,7 +252,7 @@ p1 <- ggplot(filter(params1, type == "gamma_s"), aes(x = gamma, y = toupper(spor
 
 p2 <- ggplot(filter(params1, type == "gamma_w"), aes(x = gamma, y = toupper(sport), fill = sport == "nfl")) + 
   geom_joy() +xlim(c(0.96, 1.01)) + xlab("Less predictable                       More predictable") + ylab("") + 
-  ggtitle(expression(paste("Season-to-season evolution of team strength (", gamma[week],")"))) + theme(plot.title = element_text(hjust = 0.5))+ 
+  ggtitle(expression(paste("Week-to-week evolution of team strength (", gamma[week],")"))) + theme(plot.title = element_text(hjust = 0.5))+ 
   theme_grey(base_size = 12) + scale_fill_manual(values = c("grey", "red"))  + theme(legend.position="none") 
 #library(gridExtra)
 #grid.arrange(p1, p2, nrow = 1)

@@ -274,26 +274,6 @@ p2
 
 
 
-## NFL's parity: unpredictability across time
-
-<div class="double">
-<p class="double-flow">
-```{r, echo = FALSE, fig.height = 4.4, fig.width = 4}
-p.gamma <- ggplot(params, aes(x = gamma_w, y = gamma_s, color = toupper(sport))) + 
-  geom_vline(xintercept = 1, color = "darkgray", linetype = 2) + 
-  geom_density_2d() + geom_point(alpha = 0.1) + 
-  xlab(expression(paste("Week-to-week consistency (", gamma[week],")")))+ 
-  ylab(expression(paste("Season-to-season consistency (", gamma[season],")")))+ 
-  scale_colour_brewer(palette = "Dark2", "League") + 
-  theme_grey(base_size = 12) 
-p.gamma
-```
-</p><p class="double-flow">
-* NFL matches NBA with lowest week-to-week consistency
-* NFL with highest season-to-season consistency
-</p>
-</div>
-
 
 ## NFL systems that impact perceived parity
 

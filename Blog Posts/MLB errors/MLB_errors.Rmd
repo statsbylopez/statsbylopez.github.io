@@ -24,7 +24,7 @@ The point of this post will be to identify a few predictors of error rates, star
 
 Using the last two seasons of Statcast data, and with a huge hat tip to Bill Petti's [baseballr](http://billpetti.github.io/baseballr/) package, I grabbed all potential putouts (any play ruled an out, error, sac fly, bunt, etc). The Statcast data is super useful, as for games since 2015, it contains exit velocity and launch angle for each ball in play. 
 
-My first interest lies in whether or not exit velocity is linked to error chances. One popular strategy (both in and outside of sports analytics) is to categorize data. In other words, group balls in play together, bin hits with similar velocities, and check for the frequency of errors within each bin. That was my first step with the Statcast data. But because I was unsure what categories to use, I tried two different sets: (i) 70 mph or less, 70-85, 85 or more and (ii) 80 or less, 80-95, 95 or more. Each was roughly meant to align with softly hit, medium hit, and sharply hit ground balls, and each contained several thousand balls in play.
+My first interest lies in whether or not exit velocity is linked to error chances. One popular strategy (both in and outside of sports analytics) is to categorize data. In other words, group balls in play together, bin hits with similar velocities, and check for the frequency of errors within each bin. That was my first step with the Statcast data. But because I was unsure what categories to use, I tried two different sets: (i) 70 mph or less, 70-85, 85 or more and (ii) 80 or less, 80-95, 95 or more. Each was roughly meant to align with softly hit, medium hit, and sharply hit balls, and each contained several thousand balls in play.
 
 Here's a chart showing the fraction of plays resulting in an error in each bin. The point in each graph is the average number of errors on all balls in play for each bin.
 
@@ -69,20 +69,20 @@ df2 <- df.bip %>% filter(!is.na(launch_speed)) %>%
 ```
 
 
-```{r, fig.height= 6, fig.width= 10}
+```{r, fig.height= 4, fig.width= 10}
 library(gridExtra)
 p1 <- ggplot(df1, aes(speed.cat, ave.error)) + geom_point(size = 3) + 
   geom_errorbar(aes(ymin = low.bound, ymax = upp.bound)) + 
   scale_y_continuous(labels = scales::percent) + ylab("") + xlab("Exit Velocity") + 
   labs(title = "Fewer errors with increased exit velocity!", 
-       subtitle = "Percent of balls in play yielding an error, shown with 95% intervals")
+       subtitle = "% of balls in play yielding an error, with 95% intervals") + theme_gray(13)
 
 
 p2 <- ggplot(df2, aes(speed.cat, ave.error)) + geom_point(size = 3) + 
   geom_errorbar(aes(ymin = low.bound, ymax = upp.bound)) + 
   scale_y_continuous(labels = scales::percent) + ylab("") + xlab("Exit Velocity") + 
   labs(title = "More errors with increased exit velocity!", 
-       subtitle = "Percent of balls in play yielding an error, shown with 95% intervals")
+       subtitle = "% of balls in play yielding an error, with 95% intervals") + theme_gray(13)
 
 grid.arrange(p1, p2, nrow = 1)
 
@@ -117,7 +117,7 @@ One final plus? GAMs also make for nice visualizations, something that every spo
 
 Here's a chart showing the estimated error rate given exit velocity (x axis) and launch angle (y axis). Darker shades are linked to higher error rates.
 
-```{r, fig.height= 5, fig.width= 8}
+```{r, fig.height= 4, fig.width= 7}
 m1 <- bam(is.error ~ s(launch_speed, launch_angle, k = 50), 
           data = df.bip, method = "fREML", 
           discrete = TRUE, family = binomial(link='logit'))

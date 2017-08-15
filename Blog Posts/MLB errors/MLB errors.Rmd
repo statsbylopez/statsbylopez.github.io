@@ -1,7 +1,6 @@
 ---
 title: "On the risks of categorizing a continuous variable (with an application to baseball data)"
 author: Michael Lopez
-output: html_document
 ---
 
 ```{r setup, include=FALSE}

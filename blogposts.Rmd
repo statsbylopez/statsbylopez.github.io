@@ -2,8 +2,7 @@
 title: "Blog Posts"
 ---
 
-See below for slides and other material from conference talks that I've given
 
-
-- [On the categorization of a continuous variable](https://statsbylopez.github.io/Blog%20Posts/MLB%20errors/MLB_errors.html) What are the risks that come with categorizing a continuous variable? 
+- August, 2017: [On the categorization of a continuous variable](https://statsbylopez.github.io/Blog%20Posts/MLB%20errors/MLB_errors.html) What are the risks that come with categorizing a continuous variable? 
+ 
  

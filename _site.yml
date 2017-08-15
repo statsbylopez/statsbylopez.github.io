@@ -9,6 +9,8 @@ navbar:
       href: slides.html
     - text: "About Me"
       href: about.html
+    - text: "Blog Posts"
+      href: blogposts.html
 output:
   html_document:
     theme: flatly

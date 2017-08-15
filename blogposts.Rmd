@@ -1,0 +1,8 @@
+---
+title: "Blog Posts"
+---
+
+See below for slides and other material from conference talks that I've given
+
+
+- [On the categorization of a continuous variable](https://statsbylopez.github.io/JSM2017_files/JSM2017.html) What are the risks that come with categorizing a continuous variable? 

@@ -142,7 +142,7 @@ p
 
 Turns out, there's an obvious driver of the error rate weirdness -- sacrifices!  
 
-A few thousand of our plays feature balls hit at roughly 40 mph going (almost) directly into the ground. While not all of these plays are attempted bunts, the many such plays are (according to the Statcast play by play descriptions). Turns out, bunts are linked to high error rates (as high as 14%), likely on account of how quickly the pitcher and infielders need to react.
+A few thousand of our plays feature balls hit at roughly 40 mph going (almost) directly into the ground. While not all of these plays are attempted bunts, many appear to be (according to the Statcast play by play descriptions). Turns out, bunts are linked to high error rates (as high as 14%), likely on account of how quickly the pitcher and infielders need to react.
 
 Returning to our original question, there does appear to be a slight increase in error rates with increased exit velocity after discarding bunt attempts. Although balls hit between 50 and 90 mph all yield roughly have the same chances of an error (somewhere around 2%) -- error chances increase with the hardest hit balls. With exit velocities of 110 mph or higher, for example, our model expects error rates at several launch angles to be more than 5%. 
 
@@ -150,6 +150,6 @@ Note that one downside of the chart is that we don't get to see how many balls a
 
 ### What's the take home?
 
-From a statistical perspective, hopefully you can recognize both the dangers of categorizing continuous data, as well as the attractive features offered by a GAM (and if you to try a GAM yourself -- the code is up [here](https://github.com/statsbylopez/statsbylopez.github.io)).
+From a statistical perspective, hopefully you can recognize both the dangers of categorizing continuous data, as well as the attractive features offered by a GAM (and if you want to try a GAM yourself -- the code is up [here](https://github.com/statsbylopez/statsbylopez.github.io)).
 
-From a baseball perspective, the hardest hit balls do increase error rates. Additionally, with my intuition being that errors are often discarded from the perspective of analyzing hitter talent, this type of error creation could be worth thinking more about. In addition to a side benefit of someone who hits the ball as hard as Aaron Judge or Giancarlo Stanton, having good, capable bunters **could** actually be undervalued. Putting down a sacrifice is generally not considered worth it (trading an out for moving up a base), but with error rates as high as 14%, there may be more to the story. 
+From a baseball perspective, the hardest hit balls do increase error rates. Additionally, with my intuition being that errors are often discarded from the perspective of analyzing hitter talent, this type of error creation could be worth thinking more about. In addition to a side benefit of someone who hits the ball as hard as Aaron Judge or Giancarlo Stanton, having good, capable bunters *could* actually be undervalued. Putting down a sacrifice is generally not considered worth it (trading an out for moving up a base), but with error rates as high as 14%, there may be more to the story. 

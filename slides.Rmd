@@ -5,6 +5,8 @@ title: "Slides"
 See below for slides and other material from conference talks that I've given
 
 
+- [Randomness of professional sports](https://statsbylopez.github.io/NESSIS2017_files/NESSIS_2017.html#how-often-does-the-best-team-win) Slides for the 2017 New England Symposium on Statistics in Sports, covering a model to assess parity in professional sports (September, 2017)
+
 - [Parity in the NFL](https://statsbylopez.github.io/JSM2017_files/JSM2017.html) Slides for the 2017 Joint Statistical Meetings on developing a model to assess parity in professional sports, particularly with respect to the National Football League (August, 2017)
 
 - [Statistics in sports](https://dl.dropboxusercontent.com/u/42748635/All%20sport%20talk/Slides.FtoFtalk.html#1) Slides from a faculty-to-faculty talk at Skidmore College: "How statistics can be used to help us better understand sports" (April, 2017)

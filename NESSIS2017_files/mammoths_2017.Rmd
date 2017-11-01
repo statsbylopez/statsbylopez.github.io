@@ -20,7 +20,7 @@ knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE,
 </br></br></br></br></br>
 
 <p class="black">
-Michael Lopez, Gregory J Matthews, Benjamin Baumer</br>
+Michael Lopez (with Gregory J Matthews, Benjamin Baumer)</br>
 https://github.com/bigfour/competitiveness
 </p>
 
@@ -127,13 +127,98 @@ p  + geom_point(data = xander, colour = "black", size = 3) +
 <img src="kp.gif">
 
 
-## Parity checklist
 
-1. Equality at a fixed time 
-2. Within season equality 
-3. Between season equality
+## Paired comparison models
 
-# A cross-sport model 
+One participant versus another
+
+1. Teams in sport
+2. Individuals in sport
+3. Consumer products in market research
+4. Images in psychology
+
+Most common paired comparison model: **Bradley-Terry (BTM)**
+
+
+## Notation, BTM
+
+**Goal**: $P(i \text{ beats } j)$ = $p_{ij}$
+
+
+logit($p_{ij}$) = log($\frac{p_{ij}}{1 - p_{ij}}$) = $\theta_{i}$ - $\theta_{j}$ + $\alpha$
+
+
+* Players (or teams) $i$ and $j$
+* $\theta_{i}$ and $\theta_{j}$ strength parameters of $i$ and $j$
+* $\alpha$ is the league-wide home advantage (HA) 
+
+
+
+
+## Example: NESCAC basketball
+
+```{r}
+library(gsheet)
+library("BradleyTerry2")
+urlA <- "https://docs.google.com/spreadsheets/d/1W9TjBmt34vR-tCMV5SFAWQUmUeYBtBXNylLreJ-hJQ4/edit?usp=sharing"
+p_A <- gsheet2tbl(urlA)
+teams <- p_A %>% group_by(Away) %>% count() %>% filter(n > 4)
+nescac.games <- p_A %>% filter(Away %in% teams$Away & Home %in% teams$Away)
+set.seed(0)
+```
+
+```{r, echo = TRUE}
+sample_n(nescac.games, 3)
+```
+
+
+## Example: NESCAC basketball
+
+**Team strength estimates**
+
+```{r, fig.width = 6, fig.height = 4.5}
+result <- nescac.games$HomeScore > nescac.games$AwayScore
+homeBT <- BTm(result,
+              data.frame(team = nescac.games$Home, home.adv = 1),
+              data.frame(team = nescac.games$Away, home.adv = 0),
+              ~ team + home.adv,
+              id = "team")
+
+df.predict <- data.frame(exp(BTabilities(homeBT)))
+df.predict$Team <- rownames(df.predict)
+
+df.predict %>% mutate(theta = round(log(ability), 2)) %>% select(Team, theta) %>% arrange(theta) %>% 
+  print.data.frame()
+```
+
+
+## Example: NESCAC basketball
+
+```{r, fig.width = 6, fig.height = 4.5}
+mammoth_probs <- df.predict %>%
+      filter (Team != "Amherst") %>%
+      mutate (p.Amherst = exp(1)/(exp(1) + exp(ability)))
+
+p <- ggplot(mammoth_probs, aes(x = reorder(Team, p.Amherst))) + geom_bar(aes(weight = p.Amherst)) +
+  ylab("") + xlab("") + theme_bw() +
+  geom_hline(aes(yintercept = 0.5), color = "red", lty = 2) +
+  labs(title = "Probability of an Amherst win", subtitle = "2016-2017 men's basketball")  + 
+  scale_y_continuous(labels = scales::percent) + theme(axis.text.x = element_text(angle = 45, hjust = 1)) + theme_gray(14)
+p
+
+```
+
+
+
+
+## Example: NESCAC basketball
+
+**Home advantage: $\hat{\alpha} = 0.69$**
+
+*Probability of beating a equally talented team at home is about $\frac{e^{\hat{\alpha}}}{1 + e^{\hat{\alpha}}}$ = 66.5%*
+
+
+# A cross-sport professional model 
 
 ## Prior work
 
@@ -489,14 +574,6 @@ gg4
 
 > * There's an immense amount of luck involved in hockey. Rethinking your philosophy on a postseason series is ludicrous
 
-
-
-
-## Acknowledgements: Greg
-
-<p class="double">
-<img src="greg.png" class="one-col-image">
-</p>
 
  
 ## Summary: parity in sports

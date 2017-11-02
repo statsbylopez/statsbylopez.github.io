@@ -157,8 +157,8 @@ Michael Lopez (with Gregory J Matthews, Benjamin Baumer)</br> <a href="https://g
 <li><span class="math inline">\(\theta_{i}\)</span> and <span class="math inline">\(\theta_{j}\)</span> strength parameters of <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span></li>
 <li><span class="math inline">\(\alpha\)</span> is the league-wide home advantage (HA)</li>
 </ul>
-</section><section id="example-nescac-basketball" class="slide level2">
-<h2>Example: NESCAC basketball</h2>
+</section><section id="example-nescac-mens-basketball-2016-17" class="slide level2">
+<h2>Example: NESCAC men’s basketball, 2016-17</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sample_n</span>(nescac.games, <span class="dv">3</span>)</code></pre></div>
 <pre><code># A tibble: 3 x 4
       Away AwayScore    Home HomeScore
@@ -166,8 +166,8 @@ Michael Lopez (with Gregory J Matthews, Benjamin Baumer)</br> <a href="https://g
 1 Hamilton        63   Tufts        81
 2 Williams        72   Colby        66
 3  Bowdoin        64 Amherst        66</code></pre>
-</section><section id="example-nescac-basketball-1" class="slide level2">
-<h2>Example: NESCAC basketball</h2>
+</section><section id="example-nescac-mens-basketball-2016-17-1" class="slide level2">
+<h2>Example: NESCAC men’s basketball, 2016-17</h2>
 <p><strong>Team strength estimates</strong></p>
 <pre><code>          Team theta
 1        Colby -2.59
@@ -181,13 +181,13 @@ Michael Lopez (with Gregory J Matthews, Benjamin Baumer)</br> <a href="https://g
 9      Trinity  0.33
 10       Tufts  0.51
 11  Middlebury  0.74</code></pre>
-</section><section id="example-nescac-basketball-2" class="slide level2">
-<h2>Example: NESCAC basketball</h2>
-<p><img src="mammoths_2017_files/figure-revealjs/unnamed-chunk-5-1.png" width="576" /></p>
-</section><section id="example-nescac-basketball-3" class="slide level2">
-<h2>Example: NESCAC basketball</h2>
+</section><section id="example-nescac-mens-basketball-2016-17-2" class="slide level2">
+<h2>Example: NESCAC men’s basketball, 2016-17</h2>
+<p><img src="mammoths_2017_files/figure-revealjs/unnamed-chunk-5-1.png" width="768" /></p>
+</section><section id="example-nescac-mens-basketball-2016-17-3" class="slide level2">
+<h2>Example: NESCAC men’s basketball, 2016-17</h2>
 <p><strong>Home advantage: <span class="math inline">\(\hat{\alpha} = 0.69\)</span></strong></p>
-<p><em>Probability of beating a equally talented team at home is about <span class="math inline">\(\frac{e^{\hat{\alpha}}}{1 + e^{\hat{\alpha}}}\)</span> = 66.5%</em></p>
+<p><em>Probability of beating a equally talented team at home is about <span class="math inline">\(\frac{e^{\hat{\alpha}}}{1 + e^{\hat{\alpha}}} = \frac{e^{0.69}}{1 + e^{0.69}}\)</span> = 66.5%</em></p>
 </section>
 <section id="a-cross-sport-professional-model" class="titleslide slide level1"><h2 class="shout">A cross-sport professional model</h2></section><section id="prior-work" class="slide level2">
 <h2>Prior work</h2>

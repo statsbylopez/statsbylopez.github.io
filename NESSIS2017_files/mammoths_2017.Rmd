@@ -155,7 +155,7 @@ logit($p_{ij}$) = log($\frac{p_{ij}}{1 - p_{ij}}$) = $\theta_{i}$ - $\theta_{j}$
 
 
 
-## Example: NESCAC basketball
+## Example: NESCAC men's basketball, 2016-17
 
 ```{r}
 library(gsheet)
@@ -172,7 +172,7 @@ sample_n(nescac.games, 3)
 ```
 
 
-## Example: NESCAC basketball
+## Example: NESCAC men's basketball, 2016-17
 
 **Team strength estimates**
 
@@ -192,9 +192,9 @@ df.predict %>% mutate(theta = round(log(ability), 2)) %>% select(Team, theta) %>
 ```
 
 
-## Example: NESCAC basketball
+## Example: NESCAC men's basketball, 2016-17
 
-```{r, fig.width = 6, fig.height = 4.5}
+```{r, fig.width = 8, fig.height = 4.5}
 mammoth_probs <- df.predict %>%
       filter (Team != "Amherst") %>%
       mutate (p.Amherst = exp(1)/(exp(1) + exp(ability)))
@@ -211,11 +211,11 @@ p
 
 
 
-## Example: NESCAC basketball
+## Example: NESCAC men's basketball, 2016-17
 
 **Home advantage: $\hat{\alpha} = 0.69$**
 
-*Probability of beating a equally talented team at home is about $\frac{e^{\hat{\alpha}}}{1 + e^{\hat{\alpha}}}$ = 66.5%*
+*Probability of beating a equally talented team at home is about $\frac{e^{\hat{\alpha}}}{1 + e^{\hat{\alpha}}} = \frac{e^{0.69}}{1 + e^{0.69}}$ = 66.5%*
 
 
 # A cross-sport professional model 

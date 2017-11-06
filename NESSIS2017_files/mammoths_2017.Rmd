@@ -151,6 +151,7 @@ logit($p_{ij}$) = log($\frac{p_{ij}}{1 - p_{ij}}$) = $\theta_{i}$ - $\theta_{j}$
 * Players (or teams) $i$ and $j$
 * $\theta_{i}$ and $\theta_{j}$ strength parameters of $i$ and $j$
 * $\alpha$ is the league-wide home advantage (HA) 
+* *Aside*: Why not the women's team? 
 
 
 
@@ -176,7 +177,7 @@ sample_n(nescac.games, 3)
 
 **Team strength estimates**
 
-```{r, fig.width = 6, fig.height = 4.5}
+```{r, fig.width = 8, fig.height = 4.5}
 result <- nescac.games$HomeScore > nescac.games$AwayScore
 homeBT <- BTm(result,
               data.frame(team = nescac.games$Home, home.adv = 1),
@@ -194,7 +195,7 @@ df.predict %>% mutate(theta = round(log(ability), 2)) %>% select(Team, theta) %>
 
 ## Example: NESCAC men's basketball, 2016-17
 
-```{r, fig.width = 8, fig.height = 4.5}
+```{r, fig.width = 8, fig.height = 3.5}
 mammoth_probs <- df.predict %>%
       filter (Team != "Amherst") %>%
       mutate (p.Amherst = exp(1)/(exp(1) + exp(ability)))

@@ -156,67 +156,52 @@ logit($p_{ij}$) = log($\frac{p_{ij}}{1 - p_{ij}}$) = $\theta_{i}$ - $\theta_{j}$
 
 
 
-## Example: NESCAC men's basketball, 2016-17
+## Example: Major League Baseball
 
 ```{r}
-library(gsheet)
 library("BradleyTerry2")
-urlA <- "https://docs.google.com/spreadsheets/d/1W9TjBmt34vR-tCMV5SFAWQUmUeYBtBXNylLreJ-hJQ4/edit?usp=sharing"
-p_A <- gsheet2tbl(urlA)
-teams <- p_A %>% group_by(Away) %>% count() %>% filter(n > 4)
-nescac.games <- p_A %>% filter(Away %in% teams$Away & Home %in% teams$Away)
-set.seed(0)
-```
-
-```{r, echo = TRUE}
-sample_n(nescac.games, 3)
+data("baseball")
+head(baseball)
 ```
 
 
-## Example: NESCAC men's basketball, 2016-17
+
+## Example: Major League Baseball
+
 
 **Team strength estimates**
 
 ```{r, fig.width = 8, fig.height = 4.5}
-result <- nescac.games$HomeScore > nescac.games$AwayScore
-homeBT <- BTm(result,
-              data.frame(team = nescac.games$Home, home.adv = 1),
-              data.frame(team = nescac.games$Away, home.adv = 0),
-              ~ team + home.adv,
-              id = "team")
+baseballModel1 <- BTm(cbind(home.wins, away.wins), home.team, away.team,
+data = baseball, id = "team")
 
-df.predict <- data.frame(exp(BTabilities(homeBT)))
+df.predict <- data.frame(exp(BTabilities(baseballModel1)))
 df.predict$Team <- rownames(df.predict)
 
 df.predict %>% mutate(theta = round(log(ability), 2)) %>% select(Team, theta) %>% arrange(theta) %>% 
   print.data.frame()
+
+Boston_probs <- df.predict %>%
+      filter (Team != "Boston") %>%
+      mutate (P.Boston = exp(3.027380)/(exp(3.027380) + exp(ability)))
+
+p <- ggplot(Boston_probs,aes(x = reorder(Team, P.Boston))) + geom_bar(aes(weight = P.Boston)) +
+  ylab("Probability") + theme_bw() + xlab("") + 
+  geom_hline(aes(yintercept = 0.5), color = "red", lty = 2) +
+  ggtitle("Probability of Boston Beating Other Opponents")+ 
+  scale_y_continuous(labels = scales::percent) + theme(axis.text.x = element_text(angle = 45, hjust = 1)) + theme_gray(14)
 ```
 
 
-## Example: NESCAC men's basketball, 2016-17
+## Example: Major League Baseball
 
 ```{r, fig.width = 8, fig.height = 3.5}
-mammoth_probs <- df.predict %>%
-      filter (Team != "Amherst") %>%
-      mutate (p.Amherst = exp(1)/(exp(1) + exp(ability)))
 
-p <- ggplot(mammoth_probs, aes(x = reorder(Team, p.Amherst))) + geom_bar(aes(weight = p.Amherst)) +
-  ylab("") + xlab("") + theme_bw() +
-  geom_hline(aes(yintercept = 0.5), color = "red", lty = 2) +
-  labs(title = "Probability of an Amherst win", subtitle = "2016-2017 men's basketball")  + 
-  scale_y_continuous(labels = scales::percent) + theme(axis.text.x = element_text(angle = 45, hjust = 1)) + theme_gray(14)
 p
 
 ```
 
 
-
-
-## Example: NESCAC men's basketball, 2016-17
-
-**Home advantage: $\hat{\alpha} = 0.69$**
-
-*Probability of beating a equally talented team at home is about $\frac{e^{\hat{\alpha}}}{1 + e^{\hat{\alpha}}} = \frac{e^{0.69}}{1 + e^{0.69}}$ = 66.5%*
 
 
 # A cross-sport professional model 
@@ -390,7 +375,7 @@ divisions <- divisions_mlb
 #teamcolors <- teamcolors %>%
 #  left_join(divisions, by = c("league" = "sport", "name" = "team"))
 tidy_thetas_division <- tidy_thetas %>%
-  left_join(select(teamcolors, name, division), by = c("name" = "name")) %>%
+  left_join(select(teamcolors, name), by = c("name" = "name")) %>%
   mutate(time_val = ifelse(sport == "NFL" | sport == "MLB",  time_val + 1, time_val))
 
 

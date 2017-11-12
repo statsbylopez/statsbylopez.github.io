@@ -184,21 +184,18 @@ df.predict %>% mutate(theta = round(log(ability), 2)) %>% select(Team, theta) %>
 Boston_probs <- df.predict %>%
       filter (Team != "Boston") %>%
       mutate (P.Boston = exp(3.027380)/(exp(3.027380) + exp(ability)))
-
-p <- ggplot(Boston_probs,aes(x = reorder(Team, P.Boston))) + geom_bar(aes(weight = P.Boston)) +
-  ylab("Probability") + theme_bw() + xlab("") + 
-  geom_hline(aes(yintercept = 0.5), color = "red", lty = 2) +
-  ggtitle("Probability of Boston Beating Other Opponents")+ 
-  scale_y_continuous(labels = scales::percent) + theme(axis.text.x = element_text(angle = 45, hjust = 1)) + theme_gray(14)
 ```
 
 
 ## Example: Major League Baseball
 
 ```{r, fig.width = 8, fig.height = 3.5}
-
+p <- ggplot(Boston_probs,aes(x = reorder(Team, P.Boston))) + geom_bar(aes(weight = P.Boston)) +
+  ylab("Probability") + theme_bw() + xlab("") + 
+  geom_hline(aes(yintercept = 0.5), color = "red", lty = 2) +
+  ggtitle("Probability of Boston Beating Other Opponents")+ 
+  scale_y_continuous(labels = scales::percent) + theme(axis.text.x = element_text(angle = 45, hjust = 1)) + theme_gray(13)
 p
-
 ```
 
 

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Bayesian additive regression trees for causal inference with multiple treatments</title>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="ICHPS2018_files/rmdshower/node_modules/shower-ribbon/styles/screen-16x10.css">
+  <link rel="stylesheet" href="ICHPS2018_files/rmdshower/package/styles/screen-16x10.css">
+  <link rel="stylesheet" href="ICHPS2018_files/rmdshower/style-common.css">
+  <link rel="stylesheet" href="ICHPS2018_files/rmdshower/style-ribbon.css">
+  <link rel="stylesheet" href="ICHPS2018_files/rmdshower/style-override.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.js"></script>
+  <script src="ICHPS2018_files/rmdshower/auto-render.min.js" type="text/javascript"></script>
+  
+  
+  
+  
+  
+</head>
+
+<body class="shower list">
+
+  <header class="caption">
+    <h1>Bayesian additive regression trees for causal inference with multiple treatments</h1>
+    <p>Michael Lopez (with Liangyuan Hu, Chenyang Gu)</p>
+  </header>
+
+    
+  
+<section id="bart-with-multiple-treatments" class="slide level2 red">
+<h2>BART with multiple treatments</h2>
+<p><img src="overlap3.png" class="cover"></p>
+<p class="red">
+Michael Lopez, Liangyuan Hu, Chenyang Gu <a href="https://github.com/statsbylopez/ci-bart" class="uri">https://github.com/statsbylopez/ci-bart</a>
+</p>
+</section>
+<section id="the-setting-3-prostate-cancer-treatments" class="slide level2">
+<h2>The setting: 3 prostate cancer treatments</h2>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: right;">trx</th>
+<th style="text-align: right;">n</th>
+<th style="text-align: right;">Death Rate</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">24688</td>
+<td style="text-align: right;">0.029</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">15435</td>
+<td style="text-align: right;">0.094</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">2642</td>
+<td style="text-align: right;">0.061</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="the-setting-3-prostate-cancer-treatments-1" class="slide level2">
+<h2>The setting: 3 prostate cancer treatments</h2>
+<p><img src="ICHPS2018_files/figure-revealjs/unnamed-chunk-2-1.png" width="672" /></p>
+</section>
+<section id="issue-1-selection-bias" class="slide level2">
+<h2>Issue 1: Selection bias</h2>
+<p><img src="ICHPS2018_files/figure-revealjs/unnamed-chunk-3-1.png" width="672" /></p>
+</section>
+<section id="issue-2-non-overlapping-distributions" class="slide level2">
+<h2>Issue 2: Non-overlapping distributions</h2>
+<p><img src="ICHPS2018_files/figure-revealjs/unnamed-chunk-4-1.png" width="672" /></p>
+</section>
+<section id="issue-3-large-weights" class="slide level2">
+<h2>Issue 3: Large weights</h2>
+<p><img src="ICHPS2018_files/figure-revealjs/unnamed-chunk-5-1.png" width="672" /></p>
+</section>
+<section id="notation" class="slide level2">
+<h2>Notation</h2>
+<p>Consider causal effect of <span class="math inline">\(A \in \{1, \ldots, Z\}\)</span> on binary outcome <span class="math inline">\(Y \in \{0,1\}\)</span></p>
+<ul>
+<li><span class="math inline">\(i = 1, \ldots, n\)</span> for <span class="math inline">\(n\)</span> total subjects
+<ul>
+<li><span class="math inline">\(n = n_1 + \ldots + n_Z\)</span></li>
+</ul></li>
+<li><span class="math inline">\(\{Y_i(1), \ldots, Y_i(Z)\}\)</span> as potential outcomes for <span class="math inline">\(i\)</span></li>
+<li>Covariates <span class="math inline">\(X_i\)</span></li>
+</ul>
+</section>
+<section id="notation-1" class="slide level2">
+<h2>Notation</h2>
+<p>Interest: average treatment effect among treated</p>
+<ul>
+<li class="fragment next"><span class="math inline">\(ATT_{1|1, a}\)</span>: effect of <span class="math inline">\(T = 1\)</span> versus <span class="math inline">\(T = a\)</span> among those with <span class="math inline">\(T = 1\)</span>
+<ul>
+<li class="fragment next"><span class="math inline">\(ATT_{1|1, a}\)</span> = <span class="math inline">\(\frac{1}{n_1} \sum_{i:A_i = 1} (Y_i(1) - Y_i(a))\)</span> for <span class="math inline">\(a = \{2, \ldots, Z\}\)</span></li>
+</ul></li>
+</ul>
+<ul>
+<li class="fragment next">Ex: <span class="math inline">\(Z\)</span> = 2, <span class="math inline">\(ATT_{1| 1, 2}\)</span>, <span class="math inline">\(ATT_{1| 1, 3}\)</span>, <span class="math inline">\(ATT_{1| 2, 3}\)</span>
+<ul>
+<li class="fragment next"><span class="math inline">\(ATT_{1|1, 2}\)</span> = <span class="math inline">\(\frac{1}{n_1} \sum_{i:A_i = 1} (Y_i(1) - Y_i(2))\)</span></li>
+<li class="fragment next"><span class="math inline">\(ATT_{1|1, 3}\)</span> = <span class="math inline">\(\frac{1}{n_1} \sum_{i:A_i = 1} (Y_i(1) - Y_i(3))\)</span></li>
+<li class="fragment next"><span class="math inline">\(ATT_{1|2, 3}\)</span> = <span class="math inline">\(\frac{1}{n_1} \sum_{i:A_i = 1} (Y_i(2) - Y_i(3))\)</span></li>
+</ul></li>
+</ul>
+</section>
+<section id="causal-inference-with-multiple-treatments" class="slide level2">
+<h2>Causal inference with multiple treatments</h2>
+<p>Why not binary approaches?</p>
+<ul>
+<li class="fragment next">May not fully account for differences in patient characteristics</li>
+<li class="fragment next">Comparisons of disctinct cohorts with dissimilar characteristics</li>
+<li class="fragment next">Challenging to identify optimal treatment</li>
+<li class="fragment next">Main issue: matching on scalar alone insufficient</li>
+<li class="fragment next">See <a href="https://projecteuclid.org/euclid.ss/1504253125">Lopez &amp; Gutman, 2017</a> for more</li>
+</ul>
+</section>
+<section id="causal-inference-with-multiple-treatments-1" class="slide level2">
+<h2>Causal inference with multiple treatments</h2>
+<ul>
+<li class="fragment next">Inverse probability of treatment weighting (<a href="http://onlinelibrary.wiley.com/doi/10.1002/sim.4168/full">Feng et al, 2012</a>)</li>
+<li class="fragment next">Generalized boosted models (<a href="http://onlinelibrary.wiley.com/doi/10.1002/sim.5753/full">McCaffrey et al, 2013</a>)</li>
+<li class="fragment next">Matching (<a href="http://onlinelibrary.wiley.com/doi/10.1111/biom.12505/full">Yang et al, 2016</a>; <a href="https://projecteuclid.org/euclid.ss/1504253125">Lopez &amp; Gutman, 2017</a>)</li>
+</ul>
+</section>
+<section id="bayesian-additive-regression-trees" class="slide level2">
+<h2>Bayesian Additive Regression Trees</h2>
+<p>BART model:</p>
+<ul>
+<li><span class="math inline">\(P(Y=1|X=x, A=a) = \Phi(f(x,a))\)</span></li>
+<li><span class="math inline">\(f(x,a)\)</span> appromated using sum of trees</li>
+<li><span class="math inline">\(ATT\)</span>’s estimated using counterfactuals
+<ul>
+<li><span class="math inline">\(ATT_{1|1, a} = \frac{1}{n_1} \sum_{i:A_i = 1}^{n} \Phi(f(1, x_i)) - \Phi(f(a, x_i))\)</span></li>
+</ul></li>
+</ul>
+</section>
+<section id="bayesian-additive-regression-trees-1" class="slide level2">
+<h2>Bayesian Additive Regression Trees</h2>
+<p>Why BART?</p>
+<ul>
+<li>Flexibly models response surface ✔️</li>
+<li>Large number of continuous and categorical predictors ✔️</li>
+<li>No ambiguity with respect to balance assessment ✔️</li>
+<li>Accessibility ✔️</li>
+</ul>
+</section>
+<section id="simulation-study" class="slide level2">
+<h2>Simulation study</h2>
+<p>6 factorial design</p>
+<ul>
+<li>Ratio of <span class="math inline">\(n_1\)</span> : <span class="math inline">\(n_2\)</span> : <span class="math inline">\(n_3\)</span></li>
+<li><span class="math inline">\(n\)</span></li>
+<li>No. predictors</li>
+<li><span class="math inline">\(P(A|X)\)</span></li>
+<li>Predictive strength</li>
+<li>Parallel treatment surfaces</li>
+</ul>
+</section>
+<section id="simulation-results" class="slide level2">
+<h2>Simulation results</h2>
+<p><img src="fig1.png" style="width:600px; height=250px"></p>
+</section>
+
+  <!--
+  To hide progress bar from entire presentation
+  just remove “progress” element.
+  -->
+  <!-- <div class="progress"></div> -->
+  <script src="ICHPS2018_files/rmdshower/node_modules/shower/node_modules/shower-core/shower.min.js"></script>
+  <!-- Copyright © 2015 Yours Truly, Famous Inc. -->
+  <!-- Photos by John Carey, fiftyfootshadows.net -->
+
+    <script>renderMathInElement(document.body);</script>
+  
+  
+</body>
+</html>

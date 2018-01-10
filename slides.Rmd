@@ -5,6 +5,8 @@ title: "Slides"
 See below for slides and other material from conference talks that I've given
 
 
+- [BART for causal inference with multiple treatments](https://statsbylopez.github.io/ICHPS%202018/ICHPS2018.html) Slides for the 2018 International Health Policy Statistics Conference, covering an implementation of Bayesian Additive Regression Trees to estimate causal effects from multiple treatments)
+
 - [Randomness of professional sports](https://statsbylopez.github.io/NESSIS2017_files/NESSIS_2017.html#how-often-does-the-best-team-win) Slides for the 2017 New England Symposium on Statistics in Sports, covering a model to assess parity in professional sports (September, 2017)
 
 - [Parity in the NFL](https://statsbylopez.github.io/JSM2017_files/JSM2017.html) Slides for the 2017 Joint Statistical Meetings on developing a model to assess parity in professional sports, particularly with respect to the National Football League (August, 2017)

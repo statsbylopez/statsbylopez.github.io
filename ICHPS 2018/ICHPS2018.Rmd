@@ -44,7 +44,13 @@ names(dat) = c("age","race","spanish","insurance","income","education","deyo","d
 
 dat = dat %>% mutate(dyearcat=ifelse(dyear %in% c(2004:2007), 1, ifelse(dyear %in% c(2008:2010),2,3)))
 
-tab.out <- dat %>% group_by(trx) %>% summarise(n=n(), `Death Rate` = round(sum(death)/n, 3))
+dat.tab <- dat
+dat.tab[dat.tab$trx ==1,]$trx <- "RT 1"
+dat.tab[dat.tab$trx ==2,]$trx <- "Prostatectomy"
+dat.tab[dat.tab$trx ==3,]$trx <- "RT 2"
+
+tab.out <- dat.tab %>% group_by(trx) %>% summarise(n=n(), `Death Rate` = round(sum(death)/n, 3))  %>% 
+  rename("Treatment" = "trx")
 kable(tab.out)
 ```
 
@@ -277,7 +283,7 @@ round(cbind(att13.lower, att13.mean, att13.upper), digits=3)
 
 ## Bayesian Additive Regression Trees
 
-Why BART?
+Why BART for causal inference? see [Hill, 2012](https://www.researchgate.net/profile/Jennifer_Hill3/publication/236588890_Bayesian_Nonparametric_Modeling_for_Causal_Inference/links/0deec5187f94192f12000000.pdf) 
 
 - Flexibly models response surface `r emo::ji("heavy_check_mark")`
 - Large number of continuous and categorical predictors `r emo::ji("heavy_check_mark")`
@@ -289,8 +295,8 @@ Why BART?
 
 Why BART for multiple treatments?
 
-- Heterogenous treatment effects `r emo::ji("heavy_check_mark")`
-- Coherent posterior intervals `r emo::ji("heavy_check_mark")`
+- Coherent posterior intervals `r emo::ji("question")`
+- Heterogenous treatment effects `r emo::ji("question")`
 - Accessibility `r emo::ji("question")`
 - Accuracy `r emo::ji("question")`
 
@@ -304,11 +310,8 @@ Why BART for multiple treatments?
 - $n$
 - No. predictors 
 - $P(A|X)$
-- Predictive strength
-- Parallel treatment surfaces
-
-
-
+- Predictor strength alignment 
+- Response surfaces (parallel?)
 
 
 ## Simulation results
@@ -343,11 +346,19 @@ ggplot(df.out, aes(type, point.est)) +
 
 #      EST  LOWER  UPPER |    EST  LOWER  UPPER 
 #RD -0.029 -0.034 -0.024 | -0.015 -0.027 -0.007 
-
-
 ```
 
 
-## Conclusions
+## Comments
 
 
+> - Attentuation of effect comparing RT 1 v. Prostatectomy
+>     - distinct cohorts
+> - Less attentuation for RT 1 v RT 2
+>     - similar cohorts
+
+> - BART shows promise for causal inference with multiple treatments
+>     - expanded simulations required
+>     - formal paper ready Spring 2018
+>     - in progress Github site: [https://github.com/statsbylopez/ci-bart](https://github.com/statsbylopez/ci-bart)
+  

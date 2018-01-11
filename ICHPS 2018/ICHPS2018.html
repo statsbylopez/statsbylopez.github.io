@@ -41,24 +41,24 @@ Michael Lopez, Liangyuan Hu, Chenyang Gu <a href="https://github.com/statsbylope
 <table>
 <thead>
 <tr class="header">
-<th style="text-align: right;">trx</th>
+<th style="text-align: left;">Treatment</th>
 <th style="text-align: right;">n</th>
 <th style="text-align: right;">Death Rate</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">24688</td>
-<td style="text-align: right;">0.029</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2</td>
+<td style="text-align: left;">Prostatectomy</td>
 <td style="text-align: right;">15435</td>
 <td style="text-align: right;">0.094</td>
 </tr>
+<tr class="even">
+<td style="text-align: left;">RT 1</td>
+<td style="text-align: right;">24688</td>
+<td style="text-align: right;">0.029</td>
+</tr>
 <tr class="odd">
-<td style="text-align: right;">3</td>
+<td style="text-align: left;">RT 2</td>
 <td style="text-align: right;">2642</td>
 <td style="text-align: right;">0.061</td>
 </tr>
@@ -148,7 +148,7 @@ Michael Lopez, Liangyuan Hu, Chenyang Gu <a href="https://github.com/statsbylope
 </section>
 <section id="bayesian-additive-regression-trees-1" class="slide level2">
 <h2>Bayesian Additive Regression Trees</h2>
-<p>Why BART?</p>
+<p>Why BART for causal inference? see <a href="https://www.researchgate.net/profile/Jennifer_Hill3/publication/236588890_Bayesian_Nonparametric_Modeling_for_Causal_Inference/links/0deec5187f94192f12000000.pdf">Hill, 2012</a></p>
 <ul>
 <li>Flexibly models response surface ✔️</li>
 <li>Large number of continuous and categorical predictors ✔️</li>
@@ -161,8 +161,8 @@ Michael Lopez, Liangyuan Hu, Chenyang Gu <a href="https://github.com/statsbylope
 <h2>Bayesian Additive Regression Trees</h2>
 <p>Why BART for multiple treatments?</p>
 <ul>
-<li>Heterogenous treatment effects ✔️</li>
-<li>Coherent posterior intervals ✔️</li>
+<li>Coherent posterior intervals ❓</li>
+<li>Heterogenous treatment effects ❓</li>
 <li>Accessibility ❓</li>
 <li>Accuracy ❓</li>
 </ul>
@@ -175,8 +175,8 @@ Michael Lopez, Liangyuan Hu, Chenyang Gu <a href="https://github.com/statsbylope
 <li><span class="math inline">\(n\)</span></li>
 <li>No. predictors</li>
 <li><span class="math inline">\(P(A|X)\)</span></li>
-<li>Predictive strength</li>
-<li>Parallel treatment surfaces</li>
+<li>Predictor strength alignment</li>
+<li>Response surfaces (parallel?)</li>
 </ul>
 </section>
 <section id="simulation-results" class="slide level2">
@@ -188,8 +188,26 @@ Michael Lopez, Liangyuan Hu, Chenyang Gu <a href="https://github.com/statsbylope
 <p><em>ATT’s: generalizable to population receiving RT 1</em></p>
 <p><img src="ICHPS2018_files/figure-revealjs/unnamed-chunk-8-1.png" width="576" /></p>
 </section>
-<section id="conclusions" class="slide level2">
-<h2>Conclusions</h2>
+<section id="comments" class="slide level2">
+<h2>Comments</h2>
+<ul>
+<li class="fragment next">Attentuation of effect comparing RT 1 v. Prostatectomy
+<ul>
+<li class="fragment next">distinct cohorts</li>
+</ul></li>
+<li class="fragment next">Less attentuation for RT 1 v RT 2
+<ul>
+<li class="fragment next">similar cohorts</li>
+</ul></li>
+</ul>
+<ul>
+<li class="fragment next">BART shows promise for causal inference with multiple treatments
+<ul>
+<li class="fragment next">expanded simulations required</li>
+<li class="fragment next">formal paper ready Spring 2018</li>
+<li class="fragment next">in progress Github site: <a href="https://github.com/statsbylopez/ci-bart" class="uri">https://github.com/statsbylopez/ci-bart</a></li>
+</ul></li>
+</ul>
 </section>
 
   <!--

@@ -305,7 +305,7 @@ Why BART for multiple treatments?
 
 ## Simulation study
 
-6 factorial design
+6 factorial design using `dbarts` package in R
 
 - Ratio of $n_1$ : $n_2$ : $n_3$
 - $n$
@@ -361,5 +361,10 @@ ggplot(df.out, aes(type, point.est)) +
 > - BART shows promise for causal inference with multiple treatments
 >     - expanded simulations required
 >     - formal paper ready Spring 2018
->     - in progress Github site: [https://github.com/statsbylopez/ci-bart](https://github.com/statsbylopez/ci-bart)
-  
+
+
+## Comments
+
+Github site: [https://github.com/statsbylopez/ci-bart](https://github.com/statsbylopez/ci-bart)
+
+Twitter: [\@statsbylopez](https://twitter.com/StatsbyLopez)

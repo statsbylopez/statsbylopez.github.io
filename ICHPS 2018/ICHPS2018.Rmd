@@ -162,7 +162,7 @@ Interest: average treatment effect among treated
 > - $ATT_{1|1, a}$: effect of $T = 1$ versus $T = a$ among those with $T = 1$
 >     - $ATT_{1|1, a}$ = $\frac{1}{n_1} \sum_{i:A_i = 1} (Y_i(1) - Y_i(a))$ for $a = \{2, \ldots, Z\}$
 
-> - Ex: $Z$ = 2, $ATT_{1| 1, 2}$, $ATT_{1| 1, 3}$, $ATT_{1| 2, 3}$
+> - Ex: $Z$ = 3, $ATT_{1| 1, 2}$, $ATT_{1| 1, 3}$, $ATT_{1| 2, 3}$
 >     - $ATT_{1|1, 2}$ = $\frac{1}{n_1} \sum_{i:A_i = 1} (Y_i(1) - Y_i(2))$
 >     - $ATT_{1|1, 3}$ = $\frac{1}{n_1} \sum_{i:A_i = 1} (Y_i(1) - Y_i(3))$
 >     - $ATT_{1|2, 3}$ = $\frac{1}{n_1} \sum_{i:A_i = 1} (Y_i(2) - Y_i(3))$
@@ -191,10 +191,11 @@ Why not binary approaches?
 
 BART model: 
 
-- $P(Y=1|X=x, A=a) = \Phi(f(x,a))$ 
-- $f(x,a)$ appromated using sum of trees
+- $P(Y=1|A=a, X=x) = \Phi(f(a, x))$ 
+- $f(a,x)$ appromated using sum of trees
 - $ATT$'s estimated using counterfactuals 
     - $ATT_{1|1, a} = \frac{1}{n_1} \sum_{i:A_i = 1}^{n} \Phi(f(1, x_i)) - \Phi(f(a, x_i))$
+    - $ATT_{1|2, a} = \frac{1}{n_1} \sum_{i:A_i = 1}^{n} \Phi(f(2, x_i)) - \Phi(f(a, x_i))$
   
 
 ```{r, eval = FALSE, message = FALSE, warning = FALSE, echo = FALSE}

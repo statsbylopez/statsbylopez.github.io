@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Schedule strength in professional sports</title>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="Toronto18_files/rmdshower/node_modules/shower-ribbon/styles/screen-16x10.css">
+  <link rel="stylesheet" href="Toronto18_files/rmdshower/style-common.css">
+  <link rel="stylesheet" href="Toronto18_files/rmdshower/style-ribbon.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.js"></script>
+  <script src="Toronto18_files/rmdshower/auto-render.min.js" type="text/javascript"></script>
+  
+  
+  
+  
+  
+</head>
+
+<body class="shower list">
+
+  <header class="caption">
+    <h1>Schedule strength in professional sports</h1>
+    <p>Michael Lopez (with Gregory Matthews, Benjamin Baumer</p>
+  </header>
+
+    
+  
+<section id="schedule-strength-in-professional-sports" class="slide level2 white">
+<h2>Schedule strength in professional sports</h2>
+<p><img src="https://empirewritesback.com/wp-content/blogs.dir/210/files/2015/08/josh-donaldson-jose-pirela-mlb-new-york-yankees-toronto-blue-jays.jpg" class="cover"></p>
+<p class="white">
+Michael Lopez (with Gregory Matthews and Benjamin Baumer) <a href="https://github.com/bigfour/competitiveness" class="uri">https://github.com/bigfour/competitiveness</a>.
+</p>
+</section>
+<section id="what-were-told" class="slide level2">
+<h2>What we’re told</h2>
+<p><img src="herm.gif" style="width:500px; height=300px"></p>
+</section>
+<section id="what-were-told-1" class="slide level2">
+<h2>What we’re told</h2>
+<p><img src="bill.jpg" style="width:500px; height=300px"></p>
+</section>
+<section id="traditional-approach" class="slide level2">
+<h2>Traditional approach</h2>
+<center>
+<em>Wins</em> = <em>Skill</em> + <em>Luck</em>
+</center>
+<ul>
+<li class="fragment next">Behind most strength of schedule metrics</li>
+<li class="fragment next">Behind most approaches for assessing league parity</li>
+</ul>
+</section>
+<section id="proposed-approach" class="slide level2">
+<h2>Proposed approach</h2>
+<center>
+<em>Wins</em> = <em>Skill</em> + <em>Observable league factors</em> + <em>Unobservable factors</em>
+</center>
+<p><em>Observable league factors</em>:</p>
+<ol type="1">
+<li class="fragment next">Who you play and when you play them</li>
+<li class="fragment next">Where you play</li>
+<li class="fragment next">How rested you are</li>
+</ol>
+</section>
+<section id="who-you-play-and-when-you-play-them" class="slide level2">
+<h2>Who you play and when you play them</h2>
+<p><img src="Toronto18_files/figure-revealjs/unnamed-chunk-1-1.png" width="576" /></p>
+</section>
+<section id="who-you-play-and-when-you-play-them-1" class="slide level2">
+<h2>Who you play and when you play them</h2>
+<p><img src="Toronto18_files/figure-revealjs/unnamed-chunk-2-1.png" width="576" /></p>
+</section>
+<section id="where-you-play" class="slide level2">
+<h2>Where you play</h2>
+<p><left> <img src="vegas1.png" style="width:530px; height=400px"> </left></p>
+</section>
+<section id="how-rested-you-are" class="slide level2">
+<h2>How rested you are</h2>
+<p><img src="home-shots-by-rest-all.png" style="width:350px; height=400px"></p>
+</section>
+<section id="goals" class="slide level2">
+<h2>Goals</h2>
+<ul>
+<li>Incorporate <em>“observable league factors”</em> into a statistical model</li>
+<li>Understand impact of rest and relative opponent strength</li>
+<li>Derive schedule metrics</li>
+</ul>
+</section>
+<section id="a-cross-sport-model" class="slide level2">
+<h2>A cross-sport model</h2>
+<p><span class="math display">\[ E[\text{logit}(p_{(q,s,k) ij})] = \theta_{(q,s,k) i} - \theta_{(q, s, k) j} + \alpha_{q_0} + \alpha_{(q) i^{\star}} \]</span></p>
+<ul>
+<li class="fragment next"><span class="math inline">\(p_{(q,s,k)ij}\)</span> is probability that team <span class="math inline">\(i\)</span> will beat team <span class="math inline">\(j\)</span> in season <span class="math inline">\(s\)</span> during week <span class="math inline">\(k\)</span> of sports league <span class="math inline">\(q\)</span>, for <span class="math inline">\(q \in \{MLB, NBA, NFL, NHL\}\)</span>.</li>
+<li class="fragment next"><span class="math inline">\(\alpha_{q_{0}}\)</span> and <span class="math inline">\(\alpha_{(q) i^{\star}}\)</span> correspond to home advantage</li>
+<li class="fragment next"><span class="math inline">\(\theta_{(q,s,k) i}\)</span> and <span class="math inline">\(\theta_{(q, s, k) j}\)</span> be season-week team strength parameters</li>
+<li class="fragment next">See Ben’s talk tomorrow for more detail</li>
+</ul>
+</section>
+<section id="a-cross-sport-model-with-rest" class="slide level2">
+<h2>A cross-sport model with rest</h2>
+<p><span class="math display">\[ E[\text{logit}(p_{(q,s,k) ij})] = \theta_{(q,s,k) i} - \theta_{(q, s, k) j} + \alpha_{q_0} + \alpha_{(q) i^{\star}} + \]</span> <span class="math display">\[ \beta_{(q,1)}(Rest_i) - \beta_{(q,2)}(Rest_j)\]</span></p>
+<ul>
+<li class="fragment next"><span class="math inline">\(Rest_i\)</span>: indicator for team <span class="math inline">\(i\)</span> having a rest advantage</li>
+<li class="fragment next"><span class="math inline">\(Rest_j\)</span>: indicator for team <span class="math inline">\(j\)</span> having a rest advantage</li>
+<li class="fragment next"><span class="math inline">\(\beta_{(q,1)}\)</span>: benefit to home team of having rest</li>
+<li class="fragment next"><span class="math inline">\(\beta_{(q,2)}\)</span>: benefit to away team of having rest</li>
+</ul>
+</section>
+<section id="worst-rest-differences-2005-2016" class="slide level2">
+<h2>Worst rest differences, 2005-2016</h2>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Team</th>
+<th style="text-align: left;">League</th>
+<th style="text-align: center;">Home +</th>
+<th style="text-align: center;">Home -</th>
+<th style="text-align: center;">Road +</th>
+<th style="text-align: center;">Road -</th>
+<th style="text-align: center;">Net rest</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Philadelphia Phillies</td>
+<td style="text-align: left;">MLB</td>
+<td style="text-align: center;">30</td>
+<td style="text-align: center;">38</td>
+<td style="text-align: center;">12</td>
+<td style="text-align: center;">32</td>
+<td style="text-align: center;">-28</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Los Angeles Lakers</td>
+<td style="text-align: left;">NBA</td>
+<td style="text-align: center;">78</td>
+<td style="text-align: center;">17</td>
+<td style="text-align: center;">27</td>
+<td style="text-align: center;">147</td>
+<td style="text-align: center;">-59</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Buffalo Bills</td>
+<td style="text-align: left;">NFL</td>
+<td style="text-align: center;">9</td>
+<td style="text-align: center;">11</td>
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">11</td>
+<td style="text-align: center;">-8</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Columbus Blue Jackets</td>
+<td style="text-align: left;">NHL</td>
+<td style="text-align: center;">83</td>
+<td style="text-align: center;">32</td>
+<td style="text-align: center;">21</td>
+<td style="text-align: center;">104</td>
+<td style="text-align: center;">-32</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="best-rest-differences-2005-2016" class="slide level2">
+<h2>Best rest differences, 2005-2016</h2>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Team</th>
+<th style="text-align: left;">League</th>
+<th style="text-align: center;">Home +</th>
+<th style="text-align: center;">Home -</th>
+<th style="text-align: center;">Road +</th>
+<th style="text-align: center;">Road -</th>
+<th style="text-align: center;">Net rest</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Oakland Athletics</td>
+<td style="text-align: left;">MLB</td>
+<td style="text-align: center;">27</td>
+<td style="text-align: center;">27</td>
+<td style="text-align: center;">43</td>
+<td style="text-align: center;">21</td>
+<td style="text-align: center;">22</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Milwaukee Bucks</td>
+<td style="text-align: left;">NBA</td>
+<td style="text-align: center;">123</td>
+<td style="text-align: center;">26</td>
+<td style="text-align: center;">32</td>
+<td style="text-align: center;">98</td>
+<td style="text-align: center;">31</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Carolina Panthers</td>
+<td style="text-align: left;">NFL</td>
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">7</td>
+<td style="text-align: center;">9</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">6</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Anaheim Ducks</td>
+<td style="text-align: left;">NHL</td>
+<td style="text-align: center;">124</td>
+<td style="text-align: center;">24</td>
+<td style="text-align: center;">23</td>
+<td style="text-align: center;">97</td>
+<td style="text-align: center;">26</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="section" class="slide level2">
+<h2></h2>
+<p><img src="Toronto18_files/figure-revealjs/unnamed-chunk-5-1.png" width="720" /></p>
+</section>
+<section id="section-1" class="slide level2">
+<h2></h2>
+<p><img src="Toronto18_files/figure-revealjs/unnamed-chunk-6-1.png" width="720" /></p>
+</section>
+<section id="dissecting-a-schedule" class="slide level2">
+<h2>Dissecting a schedule</h2>
+<p><span class="math display">\[ E[\text{logit}(p_{(q,s,k) ij})] = \theta_{(q,s,k) i} - \theta_{(q, s, k) j} + \alpha_{q_0} + \alpha_{(q) i^{\star}} + \]</span> <span class="math display">\[ \beta_{(q,1)}(Rest_i) - \beta_{(q,2)}(Rest_j)\]</span></p>
+<blockquote>
+<p><span class="math inline">\(\theta_{(q,s,k) i}\)</span>: Skill $ <em>{(q, s, k) j}$: Who you play and when you play them <span class="math inline">\(\alpha_{q_0}, \alpha_{(q) i^{\star}}\)</span>: Where you play $ </em>{(q,1)}, _{(q,2)}$: How rested you are</p>
+</blockquote>
+</section>
+<section id="expected-win-totals" class="slide level2">
+<h2>Expected win totals</h2>
+<p>For team <span class="math inline">\(i\)</span> in sport <span class="math inline">\(q\)</span> in season <span class="math inline">\(s\)</span>,</p>
+<p><span class="math display">\[ Wins_{(q, s) i}|\theta_{(q,s,k) i}, \theta_{(q,s,k) j }, \alpha_{q_0}, \alpha_{(q) i^{\star}}, \beta_{(q,1)}, \beta_{(q,2)} = \]</span> <span class="math display">\[\sum_{g}p_{(q,s,k) ij}*I(Home_{g,i} = 1) + \sum_{g}(1 - p_{(q,s,k) ij})*I(Home_{g,j} = 1)\]</span></p>
+</section>
+<section id="expected-win-totals-1" class="slide level2">
+<h2>Expected win totals</h2>
+<p>Wins due to rest =<span class="math display">\[ Wins_{(q, s) i}|\theta_{(q,s,k) i}, \theta_{(q,s,k)j }, \alpha_{q_0}, \alpha_{(q) i^{\star}}, \beta_{(q,1)}, \beta_{(q,2)}  - \]</span> <span class="math display">\[Wins_{(q, s) i}|\theta_{(q,s,k) i}, \theta_{(q,s,k)j }, \alpha_{q_0}, \alpha_{(q) i^{\star}}, \beta_{(q,1)} = 0, \beta_{(q,2)} = 0\]</span></p>
+</section>
+<section id="expected-win-totals-2" class="slide level2">
+<h2>Expected win totals</h2>
+<p>Wins due to opponent caliber =<span class="math display">\[ Wins_{(q, s) i}|\theta_{(q,s,k) i}, \theta_{(q,s,k)j }, \alpha_{q_0}, \alpha_{(q) i^{\star}}, \beta_{(q,1)}, \beta_{(q,2)}  - \]</span> <span class="math display">\[Wins_{(q, s) i}|\theta_{(q,s,k) i}, \theta_{(q,s,k)j } = 0, \alpha_{q_0}, \alpha_{(q) i^{\star}}, \beta_{(q,1)}, \beta_{(q,2)}\]</span></p>
+</section>
+<section id="preliminary-results" class="slide level2">
+<h2>Preliminary results</h2>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">team</th>
+<th style="text-align: left;">season</th>
+<th style="text-align: center;">Rest wins</th>
+<th style="text-align: center;">Schedule wins</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Toronto Blue Jays</td>
+<td style="text-align: left;">2006</td>
+<td style="text-align: center;">-0.06</td>
+<td style="text-align: center;">-1.44</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Toronto Blue Jays</td>
+<td style="text-align: left;">2007</td>
+<td style="text-align: center;">-0.02</td>
+<td style="text-align: center;">-2.34</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Toronto Blue Jays</td>
+<td style="text-align: left;">2008</td>
+<td style="text-align: center;">-0.02</td>
+<td style="text-align: center;">-2.77</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Toronto Blue Jays</td>
+<td style="text-align: left;">2009</td>
+<td style="text-align: center;">0.03</td>
+<td style="text-align: center;">-3.47</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="preliminary-results-1" class="slide level2">
+<h2>Preliminary results</h2>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">team</th>
+<th style="text-align: left;">season</th>
+<th style="text-align: center;">Rest wins</th>
+<th style="text-align: center;">Schedule wins</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Los Angeles Lakers</td>
+<td style="text-align: left;">2006</td>
+<td style="text-align: center;">-0.36</td>
+<td style="text-align: center;">-0.45</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Los Angeles Lakers</td>
+<td style="text-align: left;">2007</td>
+<td style="text-align: center;">-0.40</td>
+<td style="text-align: center;">-0.88</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Los Angeles Lakers</td>
+<td style="text-align: left;">2008</td>
+<td style="text-align: center;">-0.49</td>
+<td style="text-align: center;">-2.69</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Los Angeles Lakers</td>
+<td style="text-align: left;">2009</td>
+<td style="text-align: center;">-0.82</td>
+<td style="text-align: center;">-1.00</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="section-2" class="slide level2">
+<h2></h2>
+<p><img src="Toronto18_files/figure-revealjs/unnamed-chunk-9-1.png" width="672" /></p>
+</section>
+<section id="section-3" class="slide level2">
+<h2></h2>
+<p><img src="Toronto18_files/figure-revealjs/unnamed-chunk-10-1.png" width="672" /></p>
+</section>
+<section id="section-4" class="slide level2">
+<h2></h2>
+<p><img src="Toronto18_files/figure-revealjs/unnamed-chunk-11-1.png" width="672" /></p>
+</section>
+<section id="section-5" class="slide level2">
+<h2></h2>
+<p><img src="Toronto18_files/figure-revealjs/unnamed-chunk-12-1.png" width="672" /></p>
+</section>
+<section id="section-6" class="slide level2">
+<h2></h2>
+<p><img src="Toronto18_files/figure-revealjs/unnamed-chunk-13-1.png" width="672" /></p>
+</section>
+<section id="section-7" class="slide level2">
+<h2></h2>
+<p><img src="Toronto18_files/figure-revealjs/unnamed-chunk-14-1.png" width="672" /></p>
+</section>
+<section id="section-8" class="slide level2">
+<h2></h2>
+<p><img src="Toronto18_files/figure-revealjs/unnamed-chunk-15-1.png" width="672" /></p>
+</section>
+<section id="section-9" class="slide level2 fullpage">
+<h2></h2>
+<div class="fullpage width">
+<p><img src="Toronto18_files/figure-revealjs/unnamed-chunk-16-1.png" width="768" /></p>
+</div>
+</section>
+<section id="section-10" class="slide level2 fullpage">
+<h2></h2>
+<div class="fullpage width">
+<p><img src="Toronto18_files/figure-revealjs/unnamed-chunk-17-1.png" width="768" /></p>
+</div>
+</section>
+<section id="section-11" class="slide level2 fullpage">
+<h2></h2>
+<div class="fullpage width">
+<p><img src="Toronto18_files/figure-revealjs/unnamed-chunk-18-1.png" width="768" /></p>
+</div>
+</section>
+<section id="conclusions-with-respect-to-rest" class="slide level2">
+<h2>Conclusions with respect to rest</h2>
+<ul>
+<li>Small but non-negligible differences in rest</li>
+<li>NBA with largest rest impact, MLB with smallest</li>
+<li>Rest differences tend to even out over time</li>
+<li>Part of what’s considered a home advantage may be a rest advantage</li>
+</ul>
+</section>
+<section id="conclusions-with-respect-to-opponent-strength" class="slide level2">
+<h2>Conclusions with respect to opponent strength</h2>
+<ul>
+<li>Large differences in schedule strength in NFL and MLB</li>
+<li>Persistent in MLB, more variable in NFL</li>
+<li>Less of a schedule impact in NBA (conference difference aside)</li>
+<li>Small role of schedule in NHL</li>
+</ul>
+</section>
+<section id="conclusions-with-respect-to-opponent-strength-1" class="slide level2">
+<h2>Conclusions with respect to opponent strength</h2>
+<ul>
+<li>St. Louis Cardinals with easiest schedule (+ 2.2 wins a year)</li>
+<li>Baltimore Orioles with most difficult schedule (-2.8 wins a year)</li>
+<li>Example season: 2011</li>
+<li>Cardinals 90 wins, wild card, World Series title</li>
+</ul>
+</section>
+<section id="rest-ranks-nba-1-nflnhl-2-mlb-3" class="slide level2">
+<h2>rest ranks: NBA 1, NFL/NHL 2, MLB 3</h2>
+</section>
+<section id="schedule-ranks-mlbnfl-1-nhlnba-2" class="slide level2">
+<h2>schedule ranks: MLB/NFL 1, NHL/NBA 2</h2>
+</section>
+<section id="references" class="slide level2">
+<h2>References</h2>
+<p><a href="https://arxiv.org/pdf/1701.05976.pdf">“How often does the best team win?”, Lopez/Baumer/Matthews</a></p>
+<p><a href="http://statsbylopez.netlify.com/post/the-vegas-flu-looks-real/">“The Vegas Flu”, Lopez, 2018</a>)</p>
+<p><a href="http://forum.skrimmage.com/t/the-impact-of-rest-on-recent-nhl-shot-rates/53">“Impact of rest”, McCurdy, 2017</a>)</p>
+<p><a href="http://nessis.org/confirmed-presenters.html">“Scheduling effects in the NBA and NHL…”, Osborne, 2017 NESSIS</a></p>
+</section>
+
+  <!--
+  To hide progress bar from entire presentation
+  just remove “progress” element.
+  -->
+  <!-- <div class="progress"></div> -->
+  <script src="Toronto18_files/rmdshower/node_modules/shower/node_modules/shower-core/shower.min.js"></script>
+  <!-- Copyright © 2015 Yours Truly, Famous Inc. -->
+  <!-- Photos by John Carey, fiftyfootshadows.net -->
+
+    <script>renderMathInElement(document.body);</script>
+  
+  
+</body>
+</html>

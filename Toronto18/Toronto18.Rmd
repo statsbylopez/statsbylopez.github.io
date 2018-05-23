@@ -220,8 +220,8 @@ min.group <- rest.benefit %>% mutate(rest.difference.cum = num.benefit.home + nu
   slice(1) %>%  ungroup() %>% mutate(sport = toupper(sport)) %>% 
   select(team, sport, benefit.ashome, detriment.ashome, benefit.asaway, detriment.asaway, rest.difference.cum) %>% 
   rename(Team = team, League = sport, 
-         `Home +` = benefit.ashome, `Home -` = detriment.ashome, 
-         `Road +` = benefit.asaway, `Road -` = detriment.asaway, 
+         `Home+` = benefit.ashome, `Home-` = detriment.ashome, 
+         `Road+` = benefit.asaway, `Road-` = detriment.asaway, 
          `Net rest` = rest.difference.cum) 
 
 max.group <- rest.benefit %>% mutate(rest.difference.cum = num.benefit.home + num.benefit.away) %>% 
@@ -230,8 +230,8 @@ max.group <- rest.benefit %>% mutate(rest.difference.cum = num.benefit.home + nu
   slice(1) %>%  ungroup() %>% mutate(sport = toupper(sport)) %>% 
   select(team, sport, benefit.ashome, detriment.ashome, benefit.asaway, detriment.asaway, rest.difference.cum) %>% 
   rename(Team = team, League = sport, 
-         `Home +` = benefit.ashome, `Home -` = detriment.ashome, 
-         `Road +` = benefit.asaway, `Road -` = detriment.asaway, 
+         `Home+` = benefit.ashome, `Home-` = detriment.ashome, 
+         `Road+` = benefit.asaway, `Road-` = detriment.asaway, 
          `Net rest` = rest.difference.cum) 
 kable(min.group, align=c(rep('l',times=2), rep('c',times=5)))
 ```
@@ -270,10 +270,12 @@ betas.density
 \[ E[\text{logit}(p_{(q,s,k) ij})] = \theta_{(q,s,k) i} - \theta_{(q, s, k) j} + \alpha_{q_0} + \alpha_{(q) i^{\star}} + \] 
 \[ \beta_{(q,1)}(Rest_i) - \beta_{(q,2)}(Rest_j)\] 
 
-> $\theta_{(q,s,k) i}$: Skill
-> $ \theta_{(q, s, k) j}$: Who you play and when you play them
-> $\alpha_{q_0}, \alpha_{(q) i^{\star}}$: Where you play
-> $ \beta_{(q,1)},  \beta_{(q,2)}$: How rested you are
+* $\theta_{(q,s,k) i}$: skill.
+* $\theta_{(q, s, k) j}$: who you play and when you play them
+* $\alpha_{q_0}, \alpha_{(q) i^{\star}}$: where you play
+* $\beta_{(q,1)}, \beta_{(q,2)}$: how rested you are
+
+
 
 ## Expected win totals
 
@@ -285,13 +287,13 @@ For team $i$ in sport $q$ in season $s$,
 
 ## Expected win totals 
 
-Wins due to rest =\[ Wins_{(q, s) i}|\theta_{(q,s,k) i}, \theta_{(q,s,k)j }, \alpha_{q_0}, \alpha_{(q) i^{\star}}, \beta_{(q,1)}, \beta_{(q,2)}  - \]
+**Wins due to rest** =\[ Wins_{(q, s) i}|\theta_{(q,s,k) i}, \theta_{(q,s,k)j }, \alpha_{q_0}, \alpha_{(q) i^{\star}}, \beta_{(q,1)}, \beta_{(q,2)}  - \]
 \[Wins_{(q, s) i}|\theta_{(q,s,k) i}, \theta_{(q,s,k)j }, \alpha_{q_0}, \alpha_{(q) i^{\star}}, \beta_{(q,1)} = 0, \beta_{(q,2)} = 0\]
 
 
 ## Expected win totals 
 
-Wins due to opponent caliber =\[ Wins_{(q, s) i}|\theta_{(q,s,k) i}, \theta_{(q,s,k)j }, \alpha_{q_0}, \alpha_{(q) i^{\star}}, \beta_{(q,1)}, \beta_{(q,2)}  - \]
+**Wins due to opponent caliber** =\[ Wins_{(q, s) i}|\theta_{(q,s,k) i}, \theta_{(q,s,k)j }, \alpha_{q_0}, \alpha_{(q) i^{\star}}, \beta_{(q,1)}, \beta_{(q,2)}  - \]
 \[Wins_{(q, s) i}|\theta_{(q,s,k) i}, \theta_{(q,s,k)j } = 0, \alpha_{q_0}, \alpha_{(q) i^{\star}}, \beta_{(q,1)}, \beta_{(q,2)}\]
 
 ## Preliminary results
@@ -635,27 +637,30 @@ p5
 
 - Large differences in schedule strength in NFL and MLB
   - Persistent in MLB, more variable in NFL
-- Less of a schedule impact in NBA (conference difference aside)
+- Less of a schedule impact in NBA (conference differences aside)
 - Small role of schedule in NHL
 
 ## Conclusions with respect to opponent strength
 
 - St. Louis Cardinals with easiest schedule (+ 2.2 wins a year)
 - Baltimore Orioles with most difficult schedule (-2.8 wins a year)
-- Example season: 2011
-  - Cardinals 90 wins, wild card, World Series title
+- Example: 2011 World Series winning Cardinals (90 wins, +3.3 rest wins)
 
-## rest ranks: NBA 1, NFL/NHL 2, MLB 3
-## schedule ranks: MLB/NFL 1, NHL/NBA 2
+## Summary: 
 
+> - In which sport does rest matter the most? `r emo::ji("basketball")`
+> - In which sport does opponent strength matter the most? `r emo::ji("baseball")`, `r emo::ji("football")`
+> - In which sport is there a persistent schedule (dis)advantage? `r emo::ji("baseball")`
+
+More info: Paper (https://arxiv.org/abs/1701.05976), Github (https://github.com/bigfour/competitiveness)
 
 ## References
 
 ["How often does the best team win?", Lopez/Baumer/Matthews](https://arxiv.org/pdf/1701.05976.pdf)
 
-["The Vegas Flu", Lopez, 2018](http://statsbylopez.netlify.com/post/the-vegas-flu-looks-real/))
+["The Vegas Flu", Lopez, 2018](http://statsbylopez.netlify.com/post/the-vegas-flu-looks-real/)
 
-["Impact of rest", McCurdy, 2017](http://forum.skrimmage.com/t/the-impact-of-rest-on-recent-nhl-shot-rates/53))
+["Impact of rest", McCurdy, 2017](http://forum.skrimmage.com/t/the-impact-of-rest-on-recent-nhl-shot-rates/53)
 
 ["Scheduling effects in the NBA and NHL...", Osborne, 2017 NESSIS](http://nessis.org/confirmed-presenters.html)
 

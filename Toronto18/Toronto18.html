@@ -115,10 +115,10 @@ Michael Lopez (with Gregory Matthews and Benjamin Baumer) <a href="https://githu
 <tr class="header">
 <th style="text-align: left;">Team</th>
 <th style="text-align: left;">League</th>
-<th style="text-align: center;">Home +</th>
-<th style="text-align: center;">Home -</th>
-<th style="text-align: center;">Road +</th>
-<th style="text-align: center;">Road -</th>
+<th style="text-align: center;">Home+</th>
+<th style="text-align: center;">Home-</th>
+<th style="text-align: center;">Road+</th>
+<th style="text-align: center;">Road-</th>
 <th style="text-align: center;">Net rest</th>
 </tr>
 </thead>
@@ -169,10 +169,10 @@ Michael Lopez (with Gregory Matthews and Benjamin Baumer) <a href="https://githu
 <tr class="header">
 <th style="text-align: left;">Team</th>
 <th style="text-align: left;">League</th>
-<th style="text-align: center;">Home +</th>
-<th style="text-align: center;">Home -</th>
-<th style="text-align: center;">Road +</th>
-<th style="text-align: center;">Road -</th>
+<th style="text-align: center;">Home+</th>
+<th style="text-align: center;">Home-</th>
+<th style="text-align: center;">Road+</th>
+<th style="text-align: center;">Road-</th>
 <th style="text-align: center;">Net rest</th>
 </tr>
 </thead>
@@ -227,9 +227,12 @@ Michael Lopez (with Gregory Matthews and Benjamin Baumer) <a href="https://githu
 <section id="dissecting-a-schedule" class="slide level2">
 <h2>Dissecting a schedule</h2>
 <p><span class="math display">\[ E[\text{logit}(p_{(q,s,k) ij})] = \theta_{(q,s,k) i} - \theta_{(q, s, k) j} + \alpha_{q_0} + \alpha_{(q) i^{\star}} + \]</span> <span class="math display">\[ \beta_{(q,1)}(Rest_i) - \beta_{(q,2)}(Rest_j)\]</span></p>
-<blockquote>
-<p><span class="math inline">\(\theta_{(q,s,k) i}\)</span>: Skill $ <em>{(q, s, k) j}$: Who you play and when you play them <span class="math inline">\(\alpha_{q_0}, \alpha_{(q) i^{\star}}\)</span>: Where you play $ </em>{(q,1)}, _{(q,2)}$: How rested you are</p>
-</blockquote>
+<ul>
+<li><span class="math inline">\(\theta_{(q,s,k) i}\)</span>: skill.</li>
+<li><span class="math inline">\(\theta_{(q, s, k) j}\)</span>: who you play and when you play them</li>
+<li><span class="math inline">\(\alpha_{q_0}, \alpha_{(q) i^{\star}}\)</span>: where you play</li>
+<li><span class="math inline">\(\beta_{(q,1)}, \beta_{(q,2)}\)</span>: how rested you are</li>
+</ul>
 </section>
 <section id="expected-win-totals" class="slide level2">
 <h2>Expected win totals</h2>
@@ -238,11 +241,11 @@ Michael Lopez (with Gregory Matthews and Benjamin Baumer) <a href="https://githu
 </section>
 <section id="expected-win-totals-1" class="slide level2">
 <h2>Expected win totals</h2>
-<p>Wins due to rest =<span class="math display">\[ Wins_{(q, s) i}|\theta_{(q,s,k) i}, \theta_{(q,s,k)j }, \alpha_{q_0}, \alpha_{(q) i^{\star}}, \beta_{(q,1)}, \beta_{(q,2)}  - \]</span> <span class="math display">\[Wins_{(q, s) i}|\theta_{(q,s,k) i}, \theta_{(q,s,k)j }, \alpha_{q_0}, \alpha_{(q) i^{\star}}, \beta_{(q,1)} = 0, \beta_{(q,2)} = 0\]</span></p>
+<p><strong>Wins due to rest</strong> =<span class="math display">\[ Wins_{(q, s) i}|\theta_{(q,s,k) i}, \theta_{(q,s,k)j }, \alpha_{q_0}, \alpha_{(q) i^{\star}}, \beta_{(q,1)}, \beta_{(q,2)}  - \]</span> <span class="math display">\[Wins_{(q, s) i}|\theta_{(q,s,k) i}, \theta_{(q,s,k)j }, \alpha_{q_0}, \alpha_{(q) i^{\star}}, \beta_{(q,1)} = 0, \beta_{(q,2)} = 0\]</span></p>
 </section>
 <section id="expected-win-totals-2" class="slide level2">
 <h2>Expected win totals</h2>
-<p>Wins due to opponent caliber =<span class="math display">\[ Wins_{(q, s) i}|\theta_{(q,s,k) i}, \theta_{(q,s,k)j }, \alpha_{q_0}, \alpha_{(q) i^{\star}}, \beta_{(q,1)}, \beta_{(q,2)}  - \]</span> <span class="math display">\[Wins_{(q, s) i}|\theta_{(q,s,k) i}, \theta_{(q,s,k)j } = 0, \alpha_{q_0}, \alpha_{(q) i^{\star}}, \beta_{(q,1)}, \beta_{(q,2)}\]</span></p>
+<p><strong>Wins due to opponent caliber</strong> =<span class="math display">\[ Wins_{(q, s) i}|\theta_{(q,s,k) i}, \theta_{(q,s,k)j }, \alpha_{q_0}, \alpha_{(q) i^{\star}}, \beta_{(q,1)}, \beta_{(q,2)}  - \]</span> <span class="math display">\[Wins_{(q, s) i}|\theta_{(q,s,k) i}, \theta_{(q,s,k)j } = 0, \alpha_{q_0}, \alpha_{(q) i^{\star}}, \beta_{(q,1)}, \beta_{(q,2)}\]</span></p>
 </section>
 <section id="preliminary-results" class="slide level2">
 <h2>Preliminary results</h2>
@@ -382,7 +385,7 @@ Michael Lopez (with Gregory Matthews and Benjamin Baumer) <a href="https://githu
 <ul>
 <li>Large differences in schedule strength in NFL and MLB</li>
 <li>Persistent in MLB, more variable in NFL</li>
-<li>Less of a schedule impact in NBA (conference difference aside)</li>
+<li>Less of a schedule impact in NBA (conference differences aside)</li>
 <li>Small role of schedule in NHL</li>
 </ul>
 </section>
@@ -391,21 +394,23 @@ Michael Lopez (with Gregory Matthews and Benjamin Baumer) <a href="https://githu
 <ul>
 <li>St. Louis Cardinals with easiest schedule (+ 2.2 wins a year)</li>
 <li>Baltimore Orioles with most difficult schedule (-2.8 wins a year)</li>
-<li>Example season: 2011</li>
-<li>Cardinals 90 wins, wild card, World Series title</li>
+<li>Example: 2011 World Series winning Cardinals (90 wins, +3.3 rest wins)</li>
 </ul>
 </section>
-<section id="rest-ranks-nba-1-nflnhl-2-mlb-3" class="slide level2">
-<h2>rest ranks: NBA 1, NFL/NHL 2, MLB 3</h2>
-</section>
-<section id="schedule-ranks-mlbnfl-1-nhlnba-2" class="slide level2">
-<h2>schedule ranks: MLB/NFL 1, NHL/NBA 2</h2>
+<section id="summary" class="slide level2">
+<h2>Summary:</h2>
+<ul>
+<li class="fragment next">In which sport does rest matter the most? 🏀</li>
+<li class="fragment next">In which sport does opponent strength matter the most? ⚾️, 🏈</li>
+<li class="fragment next">In which sport is there a persistent schedule (dis)advantage? ⚾️</li>
+</ul>
+<p>More info: Paper (<a href="https://arxiv.org/abs/1701.05976" class="uri">https://arxiv.org/abs/1701.05976</a>), Github (<a href="https://github.com/bigfour/competitiveness" class="uri">https://github.com/bigfour/competitiveness</a>)</p>
 </section>
 <section id="references" class="slide level2">
 <h2>References</h2>
 <p><a href="https://arxiv.org/pdf/1701.05976.pdf">“How often does the best team win?”, Lopez/Baumer/Matthews</a></p>
-<p><a href="http://statsbylopez.netlify.com/post/the-vegas-flu-looks-real/">“The Vegas Flu”, Lopez, 2018</a>)</p>
-<p><a href="http://forum.skrimmage.com/t/the-impact-of-rest-on-recent-nhl-shot-rates/53">“Impact of rest”, McCurdy, 2017</a>)</p>
+<p><a href="http://statsbylopez.netlify.com/post/the-vegas-flu-looks-real/">“The Vegas Flu”, Lopez, 2018</a></p>
+<p><a href="http://forum.skrimmage.com/t/the-impact-of-rest-on-recent-nhl-shot-rates/53">“Impact of rest”, McCurdy, 2017</a></p>
 <p><a href="http://nessis.org/confirmed-presenters.html">“Scheduling effects in the NBA and NHL…”, Osborne, 2017 NESSIS</a></p>
 </section>
 

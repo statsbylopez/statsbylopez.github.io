@@ -20,8 +20,8 @@
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/highlightjs-1.1/default.css" rel="stylesheet" />
-<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -30,10 +30,12 @@
   }
 </style>
 <script type="text/javascript">
-if (window.hljs && document.readyState && document.readyState === "complete") {
-   window.setTimeout(function() {
-      hljs.initHighlighting();
-   }, 0);
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
 }
 </script>
 
@@ -207,7 +209,8 @@ $(document).ready(function () {
 
 <p>See below for slides and other material from conference talks that I’ve given</p>
 <ul>
-<li><p><a href="https://statsbylopez.github.io/ICHPS%202018/ICHPS2018.html">BART for causal inference with multiple treatments</a> Slides for the 2018 International Health Policy Statistics Conference, covering an implementation of Bayesian Additive Regression Trees to estimate causal effects from multiple treatments)</p></li>
+<li><p><a href="https://statsbylopez.github.io/Toronto18/Toronto18.html">Measuring strength of schedule</a> Slides for the 2018 Fields Sports Analytics workshop on how to measure schedule strength in pro sports (May, 2018)</p></li>
+<li><p><a href="https://statsbylopez.github.io/ICHPS%202018/ICHPS2018.html">BART for causal inference with multiple treatments</a> Slides for the 2018 International Health Policy Statistics Conference, covering an implementation of Bayesian Additive Regression Trees to estimate causal effects from multiple treatments (January, 2018)</p></li>
 <li><p><a href="https://statsbylopez.github.io/NESSIS2017_files/NESSIS_2017.html#how-often-does-the-best-team-win">Randomness of professional sports</a> Slides for the 2017 New England Symposium on Statistics in Sports, covering a model to assess parity in professional sports (September, 2017)</p></li>
 <li><p><a href="https://statsbylopez.github.io/JSM2017_files/JSM2017.html">Parity in the NFL</a> Slides for the 2017 Joint Statistical Meetings on developing a model to assess parity in professional sports, particularly with respect to the National Football League (August, 2017)</p></li>
 <li><p><a href="https://dl.dropboxusercontent.com/u/42748635/All%20sport%20talk/Slides.FtoFtalk.html#1">Statistics in sports</a> Slides from a faculty-to-faculty talk at Skidmore College: “How statistics can be used to help us better understand sports” (April, 2017)</p></li>

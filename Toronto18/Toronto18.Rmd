@@ -509,6 +509,116 @@ size.tufte <- 8
 AL <- c("AL East", "AL West", "AL Central")
 getPalette = colorRampPalette(brewer.pal(8, "Dark2"))
 p3 <- expwins.diff %>% 
+  ungroup() %>% 
+  filter(sport == "mlb") %>% 
+  mutate(american.league = division %in% AL) %>% 
+  filter(american.league) %>% 
+  ggplot(aes(season, expwins.diff3, fill = expwins.diff3 > 0)) + geom_col(alpha = 0.5) +
+  scale_fill_manual(values = c("grey", "grey"), guide = FALSE)   + 
+  theme_tufte(size.tufte) + 
+  facet_wrap(~fct_reorder(team, as.numeric(division)), nrow = 3) + 
+  xlab("") + ylab("")  + labs(title= "MLB: change in expected wins given opponents", 
+                              subtitle = "American League") +
+  theme(axis.text.x=element_blank(),axis.ticks.x=element_blank()) 
+p3
+```
+</div>
+
+
+
+## { .fullpage }
+
+<div class="fullpage width">
+```{r, echo = FALSE}
+size.tufte <- 8
+AL <- c("AL East", "AL West", "AL Central")
+getPalette = colorRampPalette(brewer.pal(8, "Dark2"))
+p3 <- expwins.diff %>% 
+  ungroup() %>% 
+  filter(sport == "mlb") %>% 
+  mutate(american.league = division %in% AL) %>% 
+  filter(american.league) %>% 
+  ggplot(aes(season, expwins.diff3, fill = expwins.diff3 > 0)) + geom_col(alpha = 0.5) +
+  scale_fill_manual(values = c("grey", "red", "grey", "blue"), guide = FALSE)   + 
+   theme_tufte(size.tufte) + 
+  facet_wrap(~fct_reorder(team, as.numeric(division)), nrow = 3) + 
+  geom_col(data = filter(expwins.diff, division == "AL East"), 
+           aes(fill = ifelse(expwins.diff3 > 0, "blue", "red"))) + 
+  xlab("") + ylab("")  + labs(title= "MLB: change in expected wins given opponents", 
+                              subtitle = "American League") +
+  theme(axis.text.x=element_blank(),axis.ticks.x=element_blank()) 
+p3
+```
+</div>
+
+
+
+
+## { .fullpage }
+
+<div class="fullpage width">
+```{r, echo = FALSE}
+size.tufte <- 8
+AL <- c("AL East", "AL West", "AL Central")
+getPalette = colorRampPalette(brewer.pal(8, "Dark2"))
+p3 <- expwins.diff %>% 
+  ungroup() %>% 
+  filter(sport == "mlb") %>% 
+  mutate(american.league = division %in% AL) %>% 
+  filter(american.league) %>% 
+  ggplot(aes(season, expwins.diff3, fill = expwins.diff3 > 0)) + geom_col(alpha = 0.5) +
+  scale_fill_manual(values = c("red", "blue"), guide = FALSE)   + 
+  theme_tufte(size.tufte) + 
+  facet_wrap(~fct_reorder(team, as.numeric(division)), nrow = 3) + 
+  xlab("") + ylab("")  + labs(title= "MLB: change in expected wins given opponents", 
+                              subtitle = "American League") +
+  theme(axis.text.x=element_blank(),axis.ticks.x=element_blank()) 
+p3
+```
+</div>
+
+
+
+## { .fullpage }
+
+<div class="fullpage width">
+```{r, echo = FALSE}
+size.tufte <- 8
+AL <- c("AL East", "AL West", "AL Central")
+getPalette = colorRampPalette(brewer.pal(8, "Dark2"))
+vline.data <- data.frame(team = "Houston Astros", division = "AL West", xintercept = 7)
+astros.league <- data.frame(team = "Houston Astros", division = "AL West", season = c(3.5, 10), expwins.diff3 = -3, label = c("NL", "AL"))
+p3 <- expwins.diff %>% 
+  ungroup() %>% 
+  filter(sport == "mlb") %>% 
+  mutate(american.league = division %in% AL) %>% 
+  filter(american.league) %>% 
+  ggplot(aes(season, expwins.diff3, fill = expwins.diff3 > 0)) + geom_col(alpha = 0.5) +
+  scale_fill_manual(values = c("blue", "grey", "red", "grey"), guide = FALSE)   + 
+   theme_tufte(size.tufte) + 
+  facet_wrap(~fct_reorder(team, as.numeric(division)), nrow = 3) + 
+  geom_col(data = filter(expwins.diff, team == "Houston Astros"), 
+           aes(fill = ifelse(expwins.diff3 > 0, "blue", "red"))) + 
+  xlab("") + ylab("")  + labs(title= "MLB: change in expected wins given opponents", 
+                              subtitle = "American League") +
+  theme(axis.text.x=element_blank(),axis.ticks.x=element_blank()) + 
+  geom_vline(data = vline.data, aes(xintercept = xintercept), lty = 2) + 
+  geom_text(data = astros.league, aes(season, expwins.diff3, label = label)) 
+p3
+```
+</div>
+
+
+
+
+## { .fullpage }
+
+<div class="fullpage width">
+```{r, echo = FALSE}
+size.tufte <- 8
+AL <- c("AL East", "AL West", "AL Central")
+getPalette = colorRampPalette(brewer.pal(8, "Dark2"))
+p3 <- expwins.diff %>% 
   filter(sport == "mlb") %>% 
   mutate(american.league = division %in% AL) %>% 
   filter(american.league) %>% 

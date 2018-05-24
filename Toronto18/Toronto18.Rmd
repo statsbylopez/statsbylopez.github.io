@@ -32,7 +32,7 @@ https://github.com/bigfour/competitiveness.
 
 
 
-## Traditional approach
+## Traditional approach for understanding wins
 
 <center>
 
@@ -42,7 +42,7 @@ https://github.com/bigfour/competitiveness.
 > - Behind most strength of schedule metrics
 > - Behind most approaches for assessing league parity
 
-## Proposed approach
+## Proposed approach for understanding
 
 <center>
 *Wins* = *Skill* + *Observable league factors* + *Unobservable factors*
@@ -754,7 +754,13 @@ p5
 
 - St. Louis Cardinals with easiest schedule (+ 2.2 wins a year)
 - Baltimore Orioles with most difficult schedule (-2.8 wins a year)
-- Example: 2011 World Series winning Cardinals (90 wins, +3.3 rest wins)
+
+## Should this team have made the playoffs?
+
+2011 World Series winning Cardinals (90 wins, +3.3 rest wins)
+
+<img src="cardinals.png" style="width:500px; height=400px">
+
 
 ## Summary: 
 

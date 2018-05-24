@@ -759,7 +759,7 @@ p5
 
 2011 World Series winning Cardinals (90 wins, +3.3 rest wins)
 
-<img src="cardinals.png" style="width:500px; height=400px">
+<img src="cardinals.png" style="width:600px; height=500px">
 
 
 ## Summary: 

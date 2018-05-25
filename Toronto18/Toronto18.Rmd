@@ -757,7 +757,7 @@ p5
 
 ## Should this team have made the playoffs?
 
-2011 World Series winning Cardinals (90 wins, +3.3 rest wins)
+2011 World Series winning Cardinals (90 wins, +3.3 opponent wins)
 
 <img src="cardinals.png" style="width:600px; height=500px">
 

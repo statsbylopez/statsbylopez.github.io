@@ -13,43 +13,6 @@
   <script src="Toronto18_nfl_files/rmdshower/auto-render.min.js" type="text/javascript"></script>
   
   
-    <style type="text/css">
-   div.sourceCode { overflow-x: auto; }
-   table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-     margin: 0; padding: 0; vertical-align: baseline; border: none; }
-   table.sourceCode { width: 100%; line-height: 100%; }
-   td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-   td.sourceCode { padding-left: 5px; }
-   code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-   code > span.dt { color: #902000; } /* DataType */
-   code > span.dv { color: #40a070; } /* DecVal */
-   code > span.bn { color: #40a070; } /* BaseN */
-   code > span.fl { color: #40a070; } /* Float */
-   code > span.ch { color: #4070a0; } /* Char */
-   code > span.st { color: #4070a0; } /* String */
-   code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-   code > span.ot { color: #007020; } /* Other */
-   code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-   code > span.fu { color: #06287e; } /* Function */
-   code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-   code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-   code > span.cn { color: #880000; } /* Constant */
-   code > span.sc { color: #4070a0; } /* SpecialChar */
-   code > span.vs { color: #4070a0; } /* VerbatimString */
-   code > span.ss { color: #bb6688; } /* SpecialString */
-   code > span.im { } /* Import */
-   code > span.va { color: #19177c; } /* Variable */
-   code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-   code > span.op { color: #666666; } /* Operator */
-   code > span.bu { } /* BuiltIn */
-   code > span.ex { } /* Extension */
-   code > span.pp { color: #bc7a00; } /* Preprocessor */
-   code > span.at { color: #7d9029; } /* Attribute */
-   code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-   code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-   code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-   code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-  </style>
   
   
   
@@ -68,11 +31,12 @@
 <h2>Evolution of the QB</h2>
 <p><img src="https://s3-eu-west-1.amazonaws.com/wi-ebay-pictures/EBAY/77/02/82/282077052733_CANDYMIX_MTS_001585_mint-white.jpeg" class="cover"></p>
 <p class="blue">
-Michael Lopez <a href="http://statsbylopez.netlify.com/" class="uri">http://statsbylopez.netlify.com/</a>
+Michael Lopez
 </p>
 </section>
 <section id="about-me" class="slide level2">
 <h2>About me</h2>
+<p>Website: <a href="http://statsbylopez.netlify.com/" class="uri">http://statsbylopez.netlify.com/</a></p>
 <p><img src="bates.jpg" style="width:150px; height=100px"></p>
 </section>
 <section id="analyzing-qbs" class="slide level2">
@@ -97,14 +61,60 @@ Michael Lopez <a href="http://statsbylopez.netlify.com/" class="uri">http://stat
 <li class="fragment next">Game management: Limited data?</li>
 </ul>
 </section>
-<section id="analyzing-qbs-2" class="slide level2">
-<h2>Analyzing QBs</h2>
-<p>What to look for in a metric:</p>
+<section id="what-to-look-for-in-a-metric" class="slide level2">
+<h2>What to look for in a metric:</h2>
 <ol type="1">
 <li>Correlation with winning</li>
 <li>Repeatability</li>
-<li>Independence of other metrics</li>
+<li>Independence from other metrics</li>
+<li>Independence from other players</li>
 </ol>
+</section>
+<section id="what-to-look-for-in-a-metric-1" class="slide level2">
+<h2>What to look for in a metric:</h2>
+<p>Ex: batting average vs. on base percentage in MLB</p>
+<ol type="1">
+<li>Correlation with winning</li>
+<li>Repeatability</li>
+<li>Independence from other metrics</li>
+<li>Independence from other players</li>
+</ol>
+</section>
+<section id="what-to-look-for-in-a-metric-2" class="slide level2">
+<h2>What to look for in a metric:</h2>
+<p>Ex: Foul rate in the NBA</p>
+<ol type="1">
+<li>Correlation with winning</li>
+<li>Repeatability</li>
+<li>Independence from other metrics</li>
+<li>Independence from other players</li>
+</ol>
+</section>
+<section id="what-to-look-for-in-a-metric-3" class="slide level2">
+<h2>What to look for in a metric:</h2>
+<p>Ex: Goalie save percentage in the NHL</p>
+<ol type="1">
+<li>Correlation with winning</li>
+<li>Repeatability</li>
+<li>Independence from other metrics</li>
+<li>Independence from other players</li>
+</ol>
+</section>
+<section id="what-to-look-for-in-a-metric-4" class="slide level2">
+<h2>What to look for in a metric:</h2>
+<p>Ex: No. of times a QB takes a knee</p>
+<ol type="1">
+<li>Correlation with winning</li>
+<li>Repeatability</li>
+<li>Independence from other metrics</li>
+<li>Independence from other players</li>
+</ol>
+</section>
+<section id="analyzing-qbs-2" class="slide level2">
+<h2>Analyzing QBs</h2>
+<p>Alternative metric: Adjusted yds/att</p>
+<p><span class="math display">\[  = (yds + 20*(TD) - 45*(INT) - Sackyds)/(Att + Sacks)\]</span></p>
+<p>Source: <a href="https://www.pro-football-reference.com/about/glossary.htm">pro football-reference</a></p>
 </section>
 <section id="analyzing-qbs-3" class="slide level2">
 <h2>Analyzing QBs</h2>
@@ -112,7 +122,7 @@ Michael Lopez <a href="http://statsbylopez.netlify.com/" class="uri">http://stat
 <thead>
 <tr class="header">
 <th style="text-align: left;">Metric</th>
-<th style="text-align: left;">Link to team success</th>
+<th style="text-align: left;">Correlation with winning</th>
 </tr>
 </thead>
 <tbody>
@@ -142,19 +152,24 @@ Michael Lopez <a href="http://statsbylopez.netlify.com/" class="uri">http://stat
 </tr>
 </tbody>
 </table>
-<p>Adjusted yds/att = <span class="math inline">\((passyards + 20*(passTD) - 45*(ints) - sackyards)/(No.attempts + No.sacks)\)</span></p>
+</section>
+<section id="assessing-repeatability" class="slide level2">
+<h2>Assessing repeatability</h2>
+<ul>
+<li>What a player does in year 1 he also does in year 2</li>
+<li>What a player does in odd numbered games (1, 3, 5) he also does in even numbered games (2, 4, 6)</li>
+<li>What a player does in 1986/1996/2006/2016 he also does in 1987/1997/2007/2017</li>
+</ul>
 </section>
 <section id="section" class="slide level2 fullpage">
 <h2></h2>
 <div class="fullpage width">
-<pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
 <p><img src="Toronto18_nfl_files/figure-revealjs/unnamed-chunk-2-1.png" width="768" /></p>
 </div>
 </section>
 <section id="section-1" class="slide level2 fullpage">
 <h2></h2>
 <div class="fullpage width">
-<pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
 <p><img src="Toronto18_nfl_files/figure-revealjs/unnamed-chunk-3-1.png" width="768" /></p>
 </div>
 </section>
@@ -164,7 +179,7 @@ Michael Lopez <a href="http://statsbylopez.netlify.com/" class="uri">http://stat
 <thead>
 <tr class="header">
 <th style="text-align: left;">Metric</th>
-<th style="text-align: left;">Link to team success</th>
+<th style="text-align: left;">Correlation with winning</th>
 <th style="text-align: left;">Repeatability</th>
 </tr>
 </thead>
@@ -182,7 +197,7 @@ Michael Lopez <a href="http://statsbylopez.netlify.com/" class="uri">http://stat
 <tr class="odd">
 <td style="text-align: left;">Yds/game</td>
 <td style="text-align: left;">Medium</td>
-<td style="text-align: left;">Medium</td>
+<td style="text-align: left;">High</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Passer rating</td>
@@ -202,270 +217,147 @@ Michael Lopez <a href="http://statsbylopez.netlify.com/" class="uri">http://stat
 </tbody>
 </table>
 </section>
-<section id="better-metrics" class="slide level2">
-<h2><em>Better</em> metrics</h2>
+<section id="improvement" class="slide level2">
+<h2>Improvement?</h2>
 <p><img src="Toronto18_nfl_files/figure-revealjs/unnamed-chunk-5-1.png" width="528" /></p>
+</section>
+<section id="independence-from-other-players" class="slide level2">
+<h2>Independence from other players</h2>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Metric</th>
+<th style="text-align: left;">Correlation with winning</th>
+<th style="text-align: left;">Repeatability</th>
+<th style="text-align: left;">Independence</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Adjusted yds/att</td>
+<td style="text-align: left;">High</td>
+<td style="text-align: left;">Medium</td>
+<td style="text-align: left;">Medium-high</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">TD/INT ratio</td>
+<td style="text-align: left;">High</td>
+<td style="text-align: left;">Low</td>
+<td style="text-align: left;">Medium</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Yds/game</td>
+<td style="text-align: left;">Medium</td>
+<td style="text-align: left;">High</td>
+<td style="text-align: left;">Medium</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Passer rating</td>
+<td style="text-align: left;">Medium</td>
+<td style="text-align: left;">Medium</td>
+<td style="text-align: left;">Medium</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Completion %</td>
+<td style="text-align: left;">Medium</td>
+<td style="text-align: left;">High</td>
+<td style="text-align: left;">Medium</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">No. of attempts</td>
+<td style="text-align: left;">Low</td>
+<td style="text-align: left;">Medium</td>
+<td style="text-align: left;">Low</td>
+</tr>
+</tbody>
+</table>
 </section>
 <section id="conclusions-and-limitations-yearly-data" class="slide level2">
 <h2>Conclusions and limitations, yearly data</h2>
 <ul>
-<li>Performance of typical QB has improved fairly drastically using completion percentage</li>
-<li>Increases in efficiency</li>
-<li>Alternative explanations: better receivers, worse d-backs, better coaches</li>
+<li>Increase in completion percentage</li>
+<li>Increase in efficiency</li>
+<li>Lack of independence of QB metrics</li>
+<li>Alternative explanations
+<ul>
+<li>better receivers, worse d-backs, better coaches</li>
+</ul></li>
 <li>What if QBs are just making easier passes?</li>
 </ul>
 </section>
-<section id="alternative-explorations" class="slide level2">
-<h2>Alternative explorations</h2>
+<section id="newer-explorations" class="slide level2">
+<h2>Newer explorations</h2>
 <ol type="1">
 <li>Completion rate by pass location</li>
 <li>Expected points added</li>
 </ol>
+<p>Data source: <a href="https://www.armchairanalysis.com/" class="uri">https://www.armchairanalysis.com/</a></p>
 </section>
 <section id="completion-rate" class="slide level2">
 <h2>Completion rate</h2>
-<pre><code>## # weights:  72 (55 variable)
-## initial  value 410510.011997 
-## iter  10 value 299802.291361
-## iter  20 value 297533.320344
-## iter  30 value 285374.562694
-## iter  40 value 282710.909188
-## iter  50 value 282703.166658
-## iter  60 value 282702.597659
-## final  value 282702.339380 
-## converged</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tab.pass &lt;-<span class="st"> </span>A6 %&gt;%<span class="st"> </span><span class="kw">ungroup</span>() %&gt;%<span class="st"> </span>
-<span class="st">  </span><span class="kw">filter</span>(type ==<span class="st"> &quot;PASS&quot;</span>, qtr ==<span class="st"> </span><span class="dv">1</span>|qtr ==<span class="st"> </span><span class="dv">3</span>) %&gt;%<span class="st"> </span>
-<span class="st">  </span><span class="kw">group_by</span>(type, seas) %&gt;%<span class="st"> </span>
-<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">med.epa =</span> <span class="kw">median</span>(epa, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)) %&gt;%<span class="st"> </span>
-<span class="st">  </span><span class="kw">ungroup</span>() %&gt;%<span class="st"> </span>
-<span class="st">  </span><span class="kw">select</span>(-type) %&gt;%<span class="st"> </span><span class="kw">rename</span>(<span class="dt">Season =</span> seas, <span class="st">`</span><span class="dt">Median EPA</span><span class="st">`</span> =<span class="st"> </span>med.epa)
-
-tab.rush &lt;-<span class="st"> </span>A6 %&gt;%<span class="st"> </span><span class="kw">ungroup</span>() %&gt;%<span class="st"> </span>
-<span class="st">  </span><span class="kw">filter</span>(type ==<span class="st"> &quot;RUSH&quot;</span>, qtr ==<span class="st"> </span><span class="dv">1</span>|qtr ==<span class="st"> </span><span class="dv">3</span>) %&gt;%<span class="st"> </span>
-<span class="st">  </span><span class="kw">group_by</span>(type, seas) %&gt;%<span class="st"> </span>
-<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">med.epa =</span> <span class="kw">median</span>(epa, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)) %&gt;%<span class="st"> </span>
-<span class="st">  </span><span class="kw">ungroup</span>() %&gt;%<span class="st"> </span>
-<span class="st">  </span><span class="kw">select</span>(-type) %&gt;%<span class="st"> </span><span class="kw">rename</span>(<span class="dt">Season =</span> seas, <span class="st">`</span><span class="dt">Median EPA</span><span class="st">`</span> =<span class="st"> </span>med.epa)
-
-############################################
-############################################
-############################################
-
-passes &lt;-<span class="st"> </span><span class="kw">inner_join</span>(A1, pass)</code></pre></div>
-<pre><code>## Joining, by = &quot;pid&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">passes &lt;-<span class="st"> </span>passes %&gt;%<span class="st"> </span><span class="kw">filter</span>(loc %in%<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;DL&quot;</span>, <span class="st">&quot;DM&quot;</span>, <span class="st">&quot;DR&quot;</span>, <span class="st">&quot;SL&quot;</span>, <span class="st">&quot;SM&quot;</span>, <span class="st">&quot;SR&quot;</span>))
-
-p1comp &lt;-<span class="st"> </span>passes %&gt;%<span class="st"> </span><span class="kw">group_by</span>(loc, seas) %&gt;%<span class="st"> </span>
-<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">comp.rate =</span> <span class="kw">mean</span>(comp)) %&gt;%<span class="st"> </span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">x.loc =</span> <span class="kw">case_when</span>(loc ==<span class="st"> &quot;DL&quot;</span>|loc ==<span class="st"> &quot;SL&quot;</span> ~<span class="st"> &quot;Left&quot;</span>, 
-                           loc ==<span class="st"> &quot;DM&quot;</span>|loc ==<span class="st"> &quot;SM&quot;</span> ~<span class="st"> &quot;Middle&quot;</span>,
-                           loc ==<span class="st"> &quot;DR&quot;</span>|loc ==<span class="st"> &quot;SR&quot;</span> ~<span class="st"> &quot;Right&quot;</span>), 
-         <span class="dt">y.loc =</span> <span class="kw">ifelse</span>(loc %in%<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;DL&quot;</span>, <span class="st">&quot;DR&quot;</span>, <span class="st">&quot;DM&quot;</span>), <span class="st">&quot;1.deep&quot;</span>, <span class="st">&quot;2.short&quot;</span>))  %&gt;%<span class="st"> </span>
-<span class="st">  </span><span class="kw">filter</span>(y.loc ==<span class="st"> &quot;1.deep&quot;</span>)  %&gt;%<span class="st"> </span>
-<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="kw">factor</span>(seas), comp.rate)) +<span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_point</span>() +<span class="st"> </span><span class="kw">geom_smooth</span>(<span class="dt">span =</span> <span class="fl">0.9</span>) +<span class="st"> </span>
-<span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">labels =</span> scales::percent, <span class="st">&quot;&quot;</span>) +<span class="st"> </span>
-<span class="st">  </span><span class="kw">scale_x_discrete</span>(<span class="st">&quot;Season&quot;</span>) +<span class="st"> </span>
-<span class="st">  </span><span class="kw">theme_minimal</span>() +
-<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">45</span>, <span class="dt">vjust =</span> <span class="fl">0.5</span>)) +<span class="st"> </span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Completion rate by season&quot;</span>, <span class="dt">subtitle =</span> <span class="st">&quot;Deep passes&quot;</span>) +<span class="st"> </span>
-<span class="st">  </span><span class="kw">facet_wrap</span>(~x.loc, <span class="dt">scales =</span> <span class="st">&quot;free_y&quot;</span>, <span class="dt">nrow =</span> <span class="dv">1</span>) 
-  
-
-p2comp &lt;-<span class="st"> </span>passes %&gt;%<span class="st"> </span><span class="kw">group_by</span>(loc, seas) %&gt;%<span class="st"> </span>
-<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">comp.rate =</span> <span class="kw">mean</span>(comp)) %&gt;%<span class="st"> </span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">x.loc =</span> <span class="kw">case_when</span>(loc ==<span class="st"> &quot;DL&quot;</span>|loc ==<span class="st"> &quot;SL&quot;</span> ~<span class="st"> &quot;Left&quot;</span>, 
-                           loc ==<span class="st"> &quot;DM&quot;</span>|loc ==<span class="st"> &quot;SM&quot;</span> ~<span class="st"> &quot;Middle&quot;</span>,
-                           loc ==<span class="st"> &quot;DR&quot;</span>|loc ==<span class="st"> &quot;SR&quot;</span> ~<span class="st"> &quot;Right&quot;</span>), 
-         <span class="dt">y.loc =</span> <span class="kw">ifelse</span>(loc %in%<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;DL&quot;</span>, <span class="st">&quot;DR&quot;</span>, <span class="st">&quot;DM&quot;</span>), <span class="st">&quot;1.deep&quot;</span>, <span class="st">&quot;2.short&quot;</span>))  %&gt;%<span class="st"> </span>
-<span class="st">  </span><span class="kw">filter</span>(y.loc ==<span class="st"> &quot;2.short&quot;</span>)  %&gt;%<span class="st"> </span>
-<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="kw">factor</span>(seas), comp.rate)) +<span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_point</span>() +<span class="st"> </span><span class="kw">geom_smooth</span>(<span class="dt">span =</span> <span class="fl">0.9</span>) +<span class="st"> </span>
-<span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">labels =</span> scales::percent, <span class="st">&quot;&quot;</span>) +<span class="st"> </span>
-<span class="st">  </span><span class="kw">scale_x_discrete</span>(<span class="st">&quot;Season&quot;</span>) +<span class="st"> </span>
-<span class="st">  </span><span class="kw">theme_minimal</span>() +
-<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">45</span>, <span class="dt">vjust =</span> <span class="fl">0.5</span>)) +<span class="st"> </span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">subtitle =</span> <span class="st">&quot;Short passes&quot;</span>) +<span class="st"> </span>
-<span class="st">  </span><span class="kw">facet_wrap</span>(~x.loc, <span class="dt">scales =</span> <span class="st">&quot;free_y&quot;</span>, <span class="dt">nrow =</span> <span class="dv">1</span>) 
-
-p1comp +<span class="st"> </span>p2comp +<span class="st"> </span><span class="kw">plot_layout</span>(<span class="dt">ncol =</span> <span class="dv">1</span>)</code></pre></div>
-<pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
-<pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
-<p><img src="Toronto18_nfl_files/figure-revealjs/unnamed-chunk-7-1.png" width="768" /></p>
+<p><img src="https://res.cloudinary.com/cmgverticals/image/upload/f_auto,q_80/h_229,w_400/v1486349459/Julio_luwhuu.gif"></p>
+</section>
+<section id="completion-rate-1" class="slide level2">
+<h2>Completion rate</h2>
+<p><img src="julio.png" style="width:600px; height=150px"></p>
+</section>
+<section id="section-2" class="slide level2 fullpage">
+<h2></h2>
+<div class="fullpage width">
+<p><img src="Toronto18_nfl_files/figure-revealjs/unnamed-chunk-8-1.png" width="768" /></p>
+</div>
+</section>
+<section id="completion-rate-2" class="slide level2">
+<h2>Completion rate</h2>
+<ul>
+<li>Increase in rate on short passes
+<ul>
+<li>Alternative explanation: more passes behind LOS?</li>
+</ul></li>
+<li>No increase or decrease in rate on deep passes</li>
+</ul>
 </section>
 <section id="expected-points" class="slide level2">
 <h2>Expected points</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">exp.bw</code></pre></div>
-<p><img src="Toronto18_nfl_files/figure-revealjs/unnamed-chunk-8-1.png" width="768" /></p>
+<p>A primer:</p>
+<ul>
+<li>Not all yards created equal</li>
+<li>Value of yard line, down, and distance</li>
+<li>Relevant to decision making &amp; player evaluation</li>
+</ul>
 </section>
 <section id="expected-points-1" class="slide level2">
 <h2>Expected points</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p.probs</code></pre></div>
-<p><img src="Toronto18_nfl_files/figure-revealjs/unnamed-chunk-9-1.png" width="768" /></p>
+<p><img src="Toronto18_nfl_files/figure-revealjs/unnamed-chunk-9-1.png" width="576" /></p>
 </section>
 <section id="expected-points-2" class="slide level2">
 <h2>Expected points</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">kable</span>(tab.pass)</code></pre></div>
-<table>
-<thead>
-<tr class="header">
-<th style="text-align: right;">Season</th>
-<th style="text-align: right;">Median EPA</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: right;">2002</td>
-<td style="text-align: right;">0.6790508</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2003</td>
-<td style="text-align: right;">0.6411583</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2004</td>
-<td style="text-align: right;">0.7379042</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2005</td>
-<td style="text-align: right;">0.7090398</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2006</td>
-<td style="text-align: right;">0.6892838</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2007</td>
-<td style="text-align: right;">0.7235163</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2008</td>
-<td style="text-align: right;">0.7267239</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2009</td>
-<td style="text-align: right;">0.7272115</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2010</td>
-<td style="text-align: right;">0.7199877</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2011</td>
-<td style="text-align: right;">0.7522421</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2012</td>
-<td style="text-align: right;">0.7617044</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2013</td>
-<td style="text-align: right;">0.7199714</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2014</td>
-<td style="text-align: right;">0.7546562</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2015</td>
-<td style="text-align: right;">0.7789599</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2016</td>
-<td style="text-align: right;">0.7537097</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2017</td>
-<td style="text-align: right;">0.7417551</td>
-</tr>
-</tbody>
-</table>
+<p><img src="Toronto18_nfl_files/figure-revealjs/unnamed-chunk-10-1.png" width="576" /></p>
 </section>
-<section id="expected-points-3" class="slide level2">
-<h2>Expected points</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">kable</span>(tab.rush)</code></pre></div>
-<table>
-<thead>
-<tr class="header">
-<th style="text-align: right;">Season</th>
-<th style="text-align: right;">Median EPA</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: right;">2002</td>
-<td style="text-align: right;">0.5744462</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2003</td>
-<td style="text-align: right;">0.5621996</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2004</td>
-<td style="text-align: right;">0.5265997</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2005</td>
-<td style="text-align: right;">0.5296278</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2006</td>
-<td style="text-align: right;">0.5444225</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2007</td>
-<td style="text-align: right;">0.5648355</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2008</td>
-<td style="text-align: right;">0.5777760</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2009</td>
-<td style="text-align: right;">0.5480267</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2010</td>
-<td style="text-align: right;">0.5599012</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2011</td>
-<td style="text-align: right;">0.6170216</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2012</td>
-<td style="text-align: right;">0.6389082</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2013</td>
-<td style="text-align: right;">0.6233210</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2014</td>
-<td style="text-align: right;">0.6526372</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2015</td>
-<td style="text-align: right;">0.6469201</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2016</td>
-<td style="text-align: right;">0.6465261</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2017</td>
-<td style="text-align: right;">0.6312732</td>
-</tr>
-</tbody>
-</table>
+<section id="expected-points-added" class="slide level2">
+<h2>Expected points added</h2>
+<p><span class="math display">\[EPA = EP_{after play} - EP_{before play} \]</span></p>
+<p>Ex: Julio Jones catch</p>
+<ul>
+<li class="fragment next">2nd-8 at NE 49, <span class="math inline">\(EP_{before play} = 1.9\)</span></li>
+<li class="fragment next">to 1st-10 at NE 22, <span class="math inline">\(EP_{after play} = 4.1\)</span></li>
+<li class="fragment next"><span class="math inline">\(EPA = 4.1 - 1.9 = 2.2\)</span></li>
+</ul>
+</section>
+<section id="expected-points-added-1" class="slide level2">
+<h2>Expected points added</h2>
+<p><img src="Toronto18_nfl_files/figure-revealjs/unnamed-chunk-11-1.png" width="480" /></p>
+</section>
+<section id="expected-points-added-2" class="slide level2">
+<h2>Expected points added</h2>
+<p><img src="Toronto18_nfl_files/figure-revealjs/unnamed-chunk-12-1.png" width="480" /></p>
 </section>
 <section id="summary-1" class="slide level2">
 <h2>Summary:</h2>
 <ul>
-<li class="fragment next">In which sport does rest matter the most? 🏀</li>
-<li class="fragment next">In which sport does opponent strength matter the most? ⚾️, 🏈</li>
-<li class="fragment next">In which sport is there a persistent schedule (dis)advantage? ⚾️</li>
+<li class="fragment next">Have QBs improved using standard metrics? ☑️</li>
+<li class="fragment next">Have QBs improved using advanced metrics? ✅</li>
+<li class="fragment next">Have QBs improved? ❓</li>
 </ul>
 </section>
 

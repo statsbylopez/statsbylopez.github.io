@@ -15,12 +15,13 @@ output:
 
 <p class="blue">
 Michael Lopez 
-http://statsbylopez.netlify.com/
 </p>
 
 
 
 ## About me
+
+Website: http://statsbylopez.netlify.com/
 
 <img src="bates.jpg" style="width:150px; height=100px">
 
@@ -46,13 +47,63 @@ Have QBs improved?  Limitations
 > * Avoiding penalties: Others also responsible
 > * Game management: Limited data? 
 
-## Analyzing QBs
+## What to look for in a metric: 
 
-What to look for in a metric: 
 
 1. Correlation with winning
 2. Repeatability
-3. Independence of other metrics
+3. Independence from other metrics
+4. Independence from other players
+
+
+
+## What to look for in a metric: 
+
+Ex: batting average vs. on base percentage in MLB 
+
+1. Correlation with winning
+2. Repeatability
+3. Independence from other metrics
+4. Independence from other players
+
+
+## What to look for in a metric: 
+
+Ex: Foul rate in the NBA 
+
+1. Correlation with winning
+2. Repeatability
+3. Independence from other metrics
+4. Independence from other players
+
+## What to look for in a metric: 
+
+Ex: Goalie save percentage in the NHL 
+
+1. Correlation with winning
+2. Repeatability
+3. Independence from other metrics
+4. Independence from other players
+
+
+## What to look for in a metric: 
+
+Ex: No. of times a QB takes a knee  
+
+1. Correlation with winning
+2. Repeatability
+3. Independence from other metrics
+4. Independence from other players
+
+
+
+## Analyzing QBs
+
+Alternative metric: Adjusted yds/att  
+
+\[  = (yds + 20*(TD) - 45*(INT) - Sackyds)/(Att + Sacks)\]  
+
+Source: [pro football-reference](https://www.pro-football-reference.com/about/glossary.htm)
 
 
 ## Analyzing QBs
@@ -95,10 +146,11 @@ decade.data.merged <- inner_join(decade.data.long1, decade.data.long2, by = c("p
 metric <- c("any.a", "td.int.ratio", "Pass.Yds.G", "Rate", "Pass.Cmp..", "Pass.Att")
 vars.names <- c("Adjusted yds/att", "TD/INT ratio", "Yds/game", "Passer rating", "Completion %", "No. of attempts")
 team.success <- c("High", "High", "Medium", "Medium", "Medium", "Low")
-consistency <- c("Medium", "Low", "Medium", "Medium", "High", "Medium")
+consistency <- c("Medium", "Low", "High", "Medium", "High", "Medium") 
+
 df.merge <- data.frame(metric, vars.names, team.success, consistency)
 df.merge0 <- df.merge %>% select(-metric, -consistency) %>% 
-  rename(`Metric` = `vars.names`, `Link to team success` = team.success)
+  rename(`Metric` = `vars.names`, `Correlation with winning` = team.success)
 kable(df.merge0)
 
 df.show <- decade.data.merged %>% filter(metric == "td.int.ratio", player.key == "Tom Brady 2010s"|player.key =="Damon Huard 2000s")%>% 
@@ -125,14 +177,17 @@ p2 <- decade.data.merged %>%
   theme_bw() + ggtitle("Year to year consistency of various QB metrics") 
 ```
 
-Adjusted yds/att =  $(passyards + 20*(passTD) - 45*(ints) - sackyards)/(No.attempts + No.sacks)$
+## Assessing repeatability
 
+- What a player does in year 1 he also does in year 2
+- What a player does in odd numbered games (1, 3, 5) he also does in even numbered games (2, 4, 6)
+- What a player does in 1986/1996/2006/2016 he also does in 1987/1997/2007/2017
 
 
 ## { .fullpage }
 
 <div class="fullpage width">
-```{r, echo = FALSE, warning = FALSE}
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
 p1
 ```
 </div>
@@ -141,7 +196,7 @@ p1
 ## { .fullpage }
 
 <div class="fullpage width">
-```{r, echo = FALSE, warning = FALSE}
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
 p2
 ```
 </div>
@@ -153,13 +208,16 @@ p2
 
 ```{r, echo = FALSE}
 df.merge1 <- df.merge %>% select(-metric) %>% 
-  rename(`Metric` = `vars.names`, `Link to team success` = team.success, `Repeatability` = consistency)
+  rename(`Metric` = `vars.names`, `Correlation with winning` = team.success, `Repeatability` = consistency)
 library(knitr)
 kable(df.merge1)
 ```
 
 
-## *Better* metrics
+
+
+
+## Improvement?
 
 ```{r, echo = FALSE, fig.height=4, fig.width=5.5, warning = FALSE, message = FALSE}
 ## variables to focus on: any/a, completion %, 
@@ -179,20 +237,46 @@ p1
   ## Steve Grogan as outlier
 ```
 
+
+
+## Independence from other players
+
+```{r, echo = FALSE}
+df.merge1 <- df.merge %>% select(-metric) %>% 
+  rename(`Metric` = `vars.names`, `Correlation with winning` = team.success, `Repeatability` = consistency)
+ind <- c("Medium-high", "Medium", "Medium", "Medium", "Medium", "Low")
+df.merge1$`Independence` <- ind
+library(knitr)
+kable(df.merge1)
+```
+
+
 ## Conclusions and limitations, yearly data
 
-- Performance of typical QB has improved fairly drastically using completion percentage
-- Increases in efficiency
-- Alternative explanations: better receivers, worse d-backs, better coaches
+- Increase in completion percentage
+- Increase in efficiency
+- Lack of independence of QB metrics 
+- Alternative explanations
+    - better receivers, worse d-backs, better coaches
 - What if QBs are just making easier passes?
 
 
-## Alternative explorations
+## Newer explorations
 
 1. Completion rate by pass location
 2. Expected points added
 
+Data source: https://www.armchairanalysis.com/
+
+## Completion rate
+
+<img src="https://res.cloudinary.com/cmgverticals/image/upload/f_auto,q_80/h_229,w_400/v1486349459/Julio_luwhuu.gif">
+
+
 ## Completion rate 
+
+<img src="julio.png" style="width:600px; height=150px">
+
 
 
 ```{r, echo = FALSE, warning = FALSE, message = FALSE}
@@ -225,7 +309,7 @@ A3 <- A2 %>% mutate(secs.remain = 900*(qtr - 1) + min*60 + sec,
 A4 <- A3 %>% filter(!is.na(next.pts))                    
                     
 fit.mn <- nnet::multinom(next.pts ~ (yfog + dwn + ytg + g2g)^2, 
-                         data = A4, maxit = 300)
+                         data = A4, maxit = 300, trace = FALSE)
 df.fitted <- data.frame(fitted(fit.mn))
 df.fitted <- df.fitted %>% mutate(exp.pts = -7*X.7 -3*X.3 -2*X.2 + 2*X2 + 3*X3 + 7*X7) 
 ## Safeties rewarded as 2 pts 
@@ -239,7 +323,7 @@ exp.bw <- A5 %>% filter(dwn == 1, ytg == 10, qtr == 1 | qtr == 3) %>%
   geom_point() + ggtitle("Expected points, 1st and 10") + 
   theme_bw() + xlab("Distance from own end zone") + ylab("")
 
-
+lty.ex <- c("Field Goal", "Touchdown")
 p.probs <- A5 %>% filter(dwn == 1, ytg == 10, qtr == 1 | qtr == 3) %>% 
   group_by(yfog) %>% 
   summarise(`Opponent TD` = mean(X.7), 
@@ -249,8 +333,9 @@ p.probs <- A5 %>% filter(dwn == 1, ytg == 10, qtr == 1 | qtr == 3) %>%
             `Touchdown` = mean(X7)) %>% 
   gather(type, probability, `Opponent TD`:`Touchdown`) %>%
   filter(!yfog == 10) %>%
-  ggplot(aes(yfog, probability, colour = type)) + geom_line() + 
-  scale_color_brewer(palette = "Dark2", "") + 
+  ggplot(aes(yfog, probability, colour = type)) + 
+  geom_line() + 
+  scale_color_manual(values = c("blue", "red", "pink", "dark red", "dark blue"), "") + 
   xlab("Yards from own goal") + 
   scale_y_continuous(labels = scales::percent, "") + 
   theme_minimal() + 
@@ -264,10 +349,6 @@ A6 <- A5 %>% group_by(gid) %>% mutate(exp.pts.home = ifelse(off == h, exp.pts, -
                                       exp.pts.vis.diff = lead(exp.pts.vis, 1) - exp.pts.vis,
                                       epa = ifelse(off == h, exp.pts.home.diff, exp.pts.vis.diff))
            
-```
-
-```{r}
-
 tab.pass <- A6 %>% ungroup() %>% 
   filter(type == "PASS", qtr == 1|qtr == 3) %>% 
   group_by(type, seas) %>% 
@@ -297,7 +378,7 @@ p1comp <- passes %>% group_by(loc, seas) %>%
          y.loc = ifelse(loc %in% c("DL", "DR", "DM"), "1.deep", "2.short"))  %>% 
   filter(y.loc == "1.deep")  %>% 
   ggplot(aes(factor(seas), comp.rate)) + 
-  geom_point() + geom_smooth(span = 0.9) + 
+  geom_point() + geom_smooth(span = 0.9, method = "loess") + 
   scale_y_continuous(labels = scales::percent, "") + 
   scale_x_discrete("Season") + 
   theme_minimal() +
@@ -314,7 +395,7 @@ p2comp <- passes %>% group_by(loc, seas) %>%
          y.loc = ifelse(loc %in% c("DL", "DR", "DM"), "1.deep", "2.short"))  %>% 
   filter(y.loc == "2.short")  %>% 
   ggplot(aes(factor(seas), comp.rate)) + 
-  geom_point() + geom_smooth(span = 0.9) + 
+  geom_point() + geom_smooth(span = 0.9, method = "loess") + 
   scale_y_continuous(labels = scales::percent, "") + 
   scale_x_discrete("Season") + 
   theme_minimal() +
@@ -322,38 +403,88 @@ p2comp <- passes %>% group_by(loc, seas) %>%
   labs(subtitle = "Short passes") + 
   facet_wrap(~x.loc, scales = "free_y", nrow = 1) 
 
-p1comp + p2comp + plot_layout(ncol = 1)
-
 ```
+
+
+
+## { .fullpage }
+
+<div class="fullpage width">
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
+p1comp + p2comp + plot_layout(ncol = 1)
+```
+</div>
+
+## Completion rate
+
+- Increase in rate on short passes
+    - Alternative explanation: more passes behind LOS?
+- No increase or decrease in rate on deep passes
+
+
+## Expected points 
+
+A primer:
+
+- Not all yards created equal
+- Value of yard line, down, and distance
+- Relevant to decision making & player evaluation
 
 ## Expected points
 
-```{r}
+```{r, echo = FALSE, fig.height=3.8, fig.width=6}
+p.probs + labs(subtitle = "1st and 10 plays")
+```
+
+
+## Expected points
+
+```{r, echo = FALSE, fig.height=3.8, fig.width=6}
 exp.bw
 ```
 
-## Expected points
 
-```{r}
-p.probs
+## Expected points added
+
+\[EPA = EP_{after play} - EP_{before play} \]
+
+Ex: Julio Jones catch 
+
+> * 2nd-8 at NE 49, $EP_{before play} = 1.9$
+> * to 1st-10 at NE 22, $EP_{after play} = 4.1$
+> * $EPA = 4.1 - 1.9 = 2.2$
+
+## Expected points added
+
+
+```{r, echo = FALSE, fig.height=3.5, fig.width=5, message= FALSE, warning = FALSE}
+tab.pass$type <- "Pass"
+tab.rush$type <- "Rush"
+tab.epa <- rbind(tab.pass, tab.rush)
+
+p5 <- ggplot(tab.pass, aes(Season, `Median EPA`)) + geom_point(colour = "#7fc97f") + geom_smooth(method = "loess", colour = "#7fc97f") + theme_minimal() + 
+  labs(title = "Median EPA per play, 1st and 10 passing plays", 
+       subtitle = "1st and 3rd quarters of close games")
+p5
 ```
 
-## Expected points
+## Expected points added
 
-```{r}
-kable(tab.pass)
+```{r, echo = FALSE, fig.height=3.5, fig.width=5, message= FALSE, warning = FALSE}
+tab.epa <- rbind(tab.pass, tab.rush)
+
+p6 <- ggplot(tab.epa, aes(Season, `Median EPA`, colour = type)) + geom_point() + geom_smooth(method = "loess") + theme_minimal() + 
+  labs(title = "Median EPA per play, 1st and 10 plays", 
+       subtitle = "1st and 3rd quarters of close games") + 
+  scale_colour_brewer(type = "qual", "")
+p6
 ```
 
-## Expected points
-
-```{r}
-kable(tab.rush)
-```
 
 ## Summary: 
 
-> - In which sport does rest matter the most? `r emo::ji("basketball")`
-> - In which sport does opponent strength matter the most? `r emo::ji("baseball")`, `r emo::ji("football")`
-> - In which sport is there a persistent schedule (dis)advantage? `r emo::ji("baseball")`
+> - Have QBs improved using standard metrics? `r emo::ji("check")`
+> - Have QBs improved using advanced metrics? `r emo::ji("check")`
+> - Have QBs improved? `r emo::ji("question")`
 
 

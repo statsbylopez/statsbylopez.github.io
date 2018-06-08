@@ -403,6 +403,7 @@ p2comp <- passes %>% group_by(loc, seas) %>%
   labs(subtitle = "Short passes") + 
   facet_wrap(~x.loc, scales = "free_y", nrow = 1) 
 
+p.both <- p1comp + p2comp + plot_layout(ncol = 1)
 ```
 
 
@@ -411,9 +412,11 @@ p2comp <- passes %>% group_by(loc, seas) %>%
 
 <div class="fullpage width">
 ```{r, echo = FALSE, warning = FALSE, message = FALSE}
-p1comp + p2comp + plot_layout(ncol = 1)
+p.both
 ```
 </div>
+
+
 
 ## Completion rate
 

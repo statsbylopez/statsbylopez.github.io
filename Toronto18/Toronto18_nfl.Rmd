@@ -1,0 +1,359 @@
+---
+title: "Evolution of the QB"
+author: "Michael Lopez"
+output:
+  rmdshower::shower_presentation:
+    self_contained: false
+    katex: true
+    ratio: 16x10
+---
+
+
+## Evolution of the QB { .white }
+
+<img src="https://s3-eu-west-1.amazonaws.com/wi-ebay-pictures/EBAY/77/02/82/282077052733_CANDYMIX_MTS_001585_mint-white.jpeg" class="cover">
+
+<p class="blue">
+Michael Lopez 
+http://statsbylopez.netlify.com/
+</p>
+
+
+
+## About me
+
+<img src="bates.jpg" style="width:400px; height=200px">
+
+
+## Analyzing QBs
+
+Have QBs improved?  Considerations
+
+> Throwing accuracy
+> Play-calling and audibles
+> Rushing
+> Avoiding penalties
+> Game management
+
+
+## Analyzing QBs
+
+Have QBs improved?  Limitations
+
+> Throwing accuracy: Are WRs running better routes?
+> Play-calling and audibles: Limited data? 
+> Rushing: More opportunities?
+> Avoiding penalties: Others also responsible
+> Game management: Limited data? 
+
+## Analyzing QBs
+
+What to look for in a metric: 
+
+1. Correlation with winning
+2. Repeatability
+3. Independence of other metrics
+
+
+## Analyzing QBs
+
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
+library(patchwork)
+library(knitr)
+library(readr)
+library(tidyverse)
+library(readxl)
+library(ggridges)   
+setwd("~/Dropbox/nfl_00-17/")
+A <- read_csv("PLAY.csv")
+B <- read_csv("FGXP.csv")
+C <- read_csv("GAME.csv")
+pass <- read.csv("PASS.csv")
+
+decade.data <- read_excel("~/Dropbox/NFL_Random_Pats/Stats Project.xlsx")
+colnames(decade.data) <- make.names(colnames(decade.data))
+
+
+
+## How to measure QB success
+decade.data <- decade.data %>% 
+  filter(Pass.Att > 100) %>% mutate(td.int.ratio = Pass.TD/Pass.Int, 
+                                      any.a = (Pass.Yds + 20*(Pass.TD) - 45*(Pass.Int) - Off.SkYds)/(Pass.Att + Sacked), 
+                                      decade = ifelse(Season < 1990, "1980s", 
+                                                      ifelse(Season < 2000, "1990s", 
+                                                             ifelse(Season < 2010, "2000s", "2010s"))), 
+                                      player.key = paste(Player, decade), 
+                                      year.1 = Season %in% c(2016, 2006, 1996, 1986)) %>% select(-Player, -Team, -Season)
+decade.data.long1 <- decade.data %>% filter(year.1) %>% gather(metric, performance, G:any.a) %>% 
+  rename(performance1 = performance) %>% select(-year.1)
+
+decade.data.long2 <- decade.data %>% filter(!year.1) %>% gather(metric, performance, G:any.a) %>% 
+  rename(performance2 = performance)%>% select(-year.1)
+
+decade.data.merged <- inner_join(decade.data.long1, decade.data.long2, by = c("player.key" = "player.key", "metric" = "metric"))
+metric <- c("any.a", "td.int.ratio", "Pass.Yds.G", "Rate", "Pass.Cmp..", "Pass.Att")
+vars.names <- c("Adjusted yds/att", "TD/INT ratio", "Yds/game", "Passer rating", "Completion %", "No. of attempts")
+team.success <- c("High", "High", "Medium", "Medium", "Medium", "Low")
+consistency <- c("Medium", "Low", "Medium", "Medium", "High", "Medium")
+df.merge <- data.frame(metric, vars.names, team.success, consistency)
+df.merge0 <- df.merge %>% select(-metric, -consistency) %>% 
+  rename(`Metric` = `vars.names`, `Link to team success` = team.success)
+kable(df.merge0)
+
+df.show <- decade.data.merged %>% filter(metric == "td.int.ratio", player.key == "Tom Brady 2010s"|player.key =="Damon Huard 2000s")%>% 
+  inner_join(df.merge)
+
+library(ggrepel)
+
+p1 <- decade.data.merged %>% 
+  inner_join(df.merge) %>% 
+  ggplot(aes(performance1, performance2)) + 
+  xlab("Year 1 performance") + ylab("Year 2 performance") + 
+  geom_jitter() + geom_smooth() + 
+  facet_wrap(~vars.names, scales = "free") + 
+  theme_bw() + ggtitle("Year to year consistency of various QB metrics") 
+
+p2 <- decade.data.merged %>% 
+  inner_join(df.merge) %>% 
+  ggplot(aes(performance1, performance2)) + 
+  xlab("Year 1 performance") + ylab("Year 2 performance") + 
+  geom_jitter() + geom_smooth() + 
+  geom_text_repel(data = df.show, 
+                  aes(performance1, performance2, label = player.key), colour = "blue") + 
+  facet_wrap(~vars.names, scales = "free") + 
+  theme_bw() + ggtitle("Year to year consistency of various QB metrics") 
+```
+
+Adjusted yds/att =  $(passyards + 20*(passTD) - 45*(ints) - sackyards)/(No.attempts + No.sacks)$
+
+
+
+## { .fullpage }
+
+<div class="fullpage width">
+```{r, echo = FALSE, warning = FALSE}
+p1
+```
+</div>
+
+
+## { .fullpage }
+
+<div class="fullpage width">
+```{r, echo = FALSE, warning = FALSE}
+p2
+```
+</div>
+
+
+
+
+## Summary
+
+```{r, echo = FALSE}
+df.merge1 <- df.merge %>% select(-metric) %>% 
+  rename(`Metric` = `vars.names`, `Link to team success` = team.success, `Repeatability` = consistency)
+library(knitr)
+kable(df.merge1)
+```
+
+
+## *Better* metrics
+
+```{r, echo = FALSE, fig.height=4, fig.width=5.5, warning = FALSE, message = FALSE}
+## variables to focus on: any/a, completion %, 
+p1 <- decade.data.merged %>% 
+  inner_join(df.merge) %>% 
+  filter(metric %in% c("any.a", "Pass.Cmp..")) %>% 
+  ggplot(aes(x = decade.x, y = performance1, fill = decade.x)) +
+  scale_fill_brewer(guide = FALSE) + 
+  geom_boxplot(width = 0.3, alpha = 0.3) + 
+  geom_violin(alpha = 0.3) + 
+  facet_wrap(~vars.names, scales = "free") + 
+  theme_bw() + 
+  ylab("") + xlab("Decade") + 
+  geom_jitter(height = 0, width = 0.1) + 
+  ggtitle("")
+p1
+  ## Steve Grogan as outlier
+```
+
+## Conclusions and limitations, yearly data
+
+- Performance of typical QB has improved fairly drastically using completion percentage
+- Increases in efficiency
+- Alternative explanations: better receivers, worse d-backs, better coaches
+- What if QBs are just making easier passes?
+
+
+## Alternative explorations
+
+1. Completion rate by pass location
+2. Expected points added
+
+## Completion rate 
+
+
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
+A1 <- A %>% 
+  inner_join(C) %>% 
+  filter(seas >= 2002, qtr < 5)%>% 
+  mutate(off.temp = off,
+         def.temp = def,
+         off = ifelse(type == "PUNT", def.temp, off), 
+         def = ifelse(type == "PUNT", off.temp, def),
+         pts = ifelse(pts < -5, -7, pts), 
+         pts = ifelse(pts > 5, 7, pts),
+         pts = ifelse(pts == 2 & type == "PUNT", -2, pts),
+         next.pts = ifelse(pts == 0, NA, pts), 
+         next.team = ifelse(pts == 0, NA, ifelse(pts > 0, off, def))) %>% 
+  fill(next.pts, next.team, .direction = "up") %>% 
+  mutate(next.pts = ifelse(off == next.team, next.pts, -1*next.pts), 
+         next.pts = ifelse(next.team != off & next.team != def, NA, next.pts)) %>%  ## check this -- should impute values to 0
+  ungroup() %>% 
+  arrange(gid, pid)
+
+A2 <- A1 %>% filter(type!= "KOFF", !(yfog == 0 & type == "FGXP")) %>% select(-off.temp, -def.temp)
+
+## First or third quarters
+A3 <- A2 %>% mutate(secs.remain = 900*(qtr - 1) + min*60 + sec, 
+                    log.ytg = log(ytg), 
+                    g2g = yfog == ytg, 
+                    two.minute = (qtr == 2 & min <=1) |(qtr == 4 & min <=1)) %>% filter(dwn == 1)
+                    
+A4 <- A3 %>% filter(!is.na(next.pts))                    
+                    
+fit.mn <- nnet::multinom(next.pts ~ (yfog + dwn + ytg + g2g)^2, 
+                         data = A4, maxit = 300)
+df.fitted <- data.frame(fitted(fit.mn))
+df.fitted <- df.fitted %>% mutate(exp.pts = -7*X.7 -3*X.3 -2*X.2 + 2*X2 + 3*X3 + 7*X7) 
+## Safeties rewarded as 2 pts 
+
+
+A5 <- cbind(A4, df.fitted)
+
+A5[A5$yfog == 10,]$exp.pts <- -0.35
+exp.bw <- A5 %>% filter(dwn == 1, ytg == 10, qtr == 1 | qtr == 3) %>% 
+  ggplot(aes(yfog, exp.pts)) + 
+  geom_point() + ggtitle("Expected points, 1st and 10") + 
+  theme_bw() + xlab("Distance from own end zone") + ylab("")
+
+
+p.probs <- A5 %>% filter(dwn == 1, ytg == 10, qtr == 1 | qtr == 3) %>% 
+  group_by(yfog) %>% 
+  summarise(`Opponent TD` = mean(X.7), 
+            `Opponent FG` = mean(X.3), 
+            `Opponent Safety` = mean(X2), 
+            `Field Goal` = mean(X3),
+            `Touchdown` = mean(X7)) %>% 
+  gather(type, probability, `Opponent TD`:`Touchdown`) %>%
+  filter(!yfog == 10) %>%
+  ggplot(aes(yfog, probability, colour = type)) + geom_line() + 
+  scale_color_brewer(palette = "Dark2", "") + 
+  xlab("Yards from own goal") + 
+  scale_y_continuous(labels = scales::percent, "") + 
+  theme_minimal() + 
+  ggtitle("Percent chance of the next score")
+
+
+
+A6 <- A5 %>% group_by(gid) %>% mutate(exp.pts.home = ifelse(off == h, exp.pts, -1*exp.pts), 
+                                      exp.pts.vis = -1*exp.pts.home, 
+                                      exp.pts.home.diff = lead(exp.pts.home, 1) - exp.pts.home, 
+                                      exp.pts.vis.diff = lead(exp.pts.vis, 1) - exp.pts.vis,
+                                      epa = ifelse(off == h, exp.pts.home.diff, exp.pts.vis.diff))
+           
+```
+
+```{r}
+
+tab.pass <- A6 %>% ungroup() %>% 
+  filter(type == "PASS", qtr == 1|qtr == 3) %>% 
+  group_by(type, seas) %>% 
+  summarise(med.epa = median(epa, na.rm = TRUE)) %>% 
+  ungroup() %>% 
+  select(-type) %>% rename(Season = seas, `Median EPA` = med.epa)
+
+tab.rush <- A6 %>% ungroup() %>% 
+  filter(type == "RUSH", qtr == 1|qtr == 3) %>% 
+  group_by(type, seas) %>% 
+  summarise(med.epa = median(epa, na.rm = TRUE)) %>% 
+  ungroup() %>% 
+  select(-type) %>% rename(Season = seas, `Median EPA` = med.epa)
+
+############################################
+############################################
+############################################
+
+passes <- inner_join(A1, pass)
+passes <- passes %>% filter(loc %in% c("DL", "DM", "DR", "SL", "SM", "SR"))
+
+p1comp <- passes %>% group_by(loc, seas) %>% 
+  summarise(comp.rate = mean(comp)) %>% 
+  mutate(x.loc = case_when(loc == "DL"|loc == "SL" ~ "Left", 
+                           loc == "DM"|loc == "SM" ~ "Middle",
+                           loc == "DR"|loc == "SR" ~ "Right"), 
+         y.loc = ifelse(loc %in% c("DL", "DR", "DM"), "1.deep", "2.short"))  %>% 
+  filter(y.loc == "1.deep")  %>% 
+  ggplot(aes(factor(seas), comp.rate)) + 
+  geom_point() + geom_smooth(span = 0.9) + 
+  scale_y_continuous(labels = scales::percent, "") + 
+  scale_x_discrete("Season") + 
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) + 
+  labs(title = "Completion rate by season", subtitle = "Deep passes") + 
+  facet_wrap(~x.loc, scales = "free_y", nrow = 1) 
+  
+
+p2comp <- passes %>% group_by(loc, seas) %>% 
+  summarise(comp.rate = mean(comp)) %>% 
+  mutate(x.loc = case_when(loc == "DL"|loc == "SL" ~ "Left", 
+                           loc == "DM"|loc == "SM" ~ "Middle",
+                           loc == "DR"|loc == "SR" ~ "Right"), 
+         y.loc = ifelse(loc %in% c("DL", "DR", "DM"), "1.deep", "2.short"))  %>% 
+  filter(y.loc == "2.short")  %>% 
+  ggplot(aes(factor(seas), comp.rate)) + 
+  geom_point() + geom_smooth(span = 0.9) + 
+  scale_y_continuous(labels = scales::percent, "") + 
+  scale_x_discrete("Season") + 
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) + 
+  labs(subtitle = "Short passes") + 
+  facet_wrap(~x.loc, scales = "free_y", nrow = 1) 
+
+p1comp + p2comp + plot_layout(ncol = 1)
+
+```
+
+## Expected points
+
+```{r}
+exp.bw
+```
+
+## Expected points
+
+```{r}
+p.probs
+```
+
+## Expected points
+
+```{r}
+kable(tab.pass)
+```
+
+## Expected points
+
+```{r}
+kable(tab.rush)
+```
+
+## Summary: 
+
+> - In which sport does rest matter the most? `r emo::ji("basketball")`
+> - In which sport does opponent strength matter the most? `r emo::ji("baseball")`, `r emo::ji("football")`
+> - In which sport is there a persistent schedule (dis)advantage? `r emo::ji("baseball")`
+
+

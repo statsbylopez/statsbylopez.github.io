@@ -17,7 +17,36 @@ Michael Lopez, Liangyuan Hu, Chenyang Gu
 https://github.com/statsbylopez/ci-bart
 </p>
 
+
+
+
 ## 3 lung cancer treatments
+
+Video assisted (VATS)
+
+<img src="vats.jpg" style="width:400px; height=300px">
+
+
+
+## 3 lung cancer treatments
+
+Open thorectomy
+
+<img src="open.png" style="width:400px; height=300px">
+
+
+
+
+## 3 lung cancer treatments
+
+Robotic assisted
+
+<img src="robots.jpg" style="width:400px; height=300px">
+
+
+
+## 3 lung cancer treatments
+
 
 ```{r, echo = FALSE, warning = FALSE, message = FALSE}
 library(tidyverse)
@@ -305,7 +334,7 @@ Why BART for multiple treatments?
 
 ## 3 lung cancer treatments
 
-*ATT's: generalizable to population receiving RT 1*
+*ATT's: generalizable to population receiving robotic treatment*
 
 ```{r, echo  = FALSE, warning = FALSE, message = FALSE, fig.height = 3.5, fig.width=6}
 df.out <- data.frame(point.est = c(-0.049, -0.018, 0.015, 0.005), 

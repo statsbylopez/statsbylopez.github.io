@@ -147,7 +147,7 @@ tab.highlight <- tab.highlight %>% select(Variable, robotic, VATS, open.thoracot
   mutate(robotic = round(robotic, 3), VATS = round(VATS, 3), open.thoracotomy = round(open.thoracotomy, 3))
 library(knitr)
 tab.highlight1 <- tab.highlight %>% filter(Variable %in% c("race1", "cancer_stage3", "income1", "complication_resp2"))
-tab.highlight1$Variable <- c("White race", "Highest income", "Stage 3 cancer", "Complications")
+tab.highlight1$Variable <- c("Pct white", "Pct with high income", "Pct with Stage 3 cancer", "Complications")
 
 kable(tab.highlight1 %>% filter(Variable != "Complications"))
 ```

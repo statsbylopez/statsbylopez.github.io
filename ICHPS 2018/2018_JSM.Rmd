@@ -140,14 +140,14 @@ df.long <- df.sum %>% gather(variable, measurement, n:complication_resp2, factor
 tab.highlight <- cbind(filter(df.long, trt2 == 1) %>% 
         select(variable, measurement), filter(df.long, trt2 == 3) %>% 
         select(measurement), filter(df.long, trt2 ==2) %>% 
-        select(measurement))
+        select(measurement)) 
 
 names(tab.highlight) <- c("Variable", "robotic", "open.thoracotomy", "VATS")
 tab.highlight <- tab.highlight %>% select(Variable, robotic, VATS, open.thoracotomy) %>% 
   mutate(robotic = round(robotic, 3), VATS = round(VATS, 3), open.thoracotomy = round(open.thoracotomy, 3))
 library(knitr)
 tab.highlight1 <- tab.highlight %>% filter(Variable %in% c("race1", "cancer_stage3", "income1", "complication_resp2"))
-tab.highlight1$Variable <- c("Pct white", "Pct with high income", "Pct with Stage 3 cancer", "Complications")
+tab.highlight1$Variable <- c("Pct white", "Pct high income", "Pct Stage 3 cancer", "Complications")
 
 kable(tab.highlight1 %>% filter(Variable != "Complications"))
 ```
